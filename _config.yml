@@ -1,0 +1,8 @@
+title: Funiture
+description: 前后台技术实践，spring maven mybatis redis rabbitmq 权限管理 服务降级 qps限制 quartz动态调整
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
