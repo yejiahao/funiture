@@ -4,6 +4,9 @@
 * [Java并发编程与高并发解决方案](http://coding.imooc.com/class/195.html)：http://coding.imooc.com/class/195.html 
 * [Java开发企业级权限管理系统](http://coding.imooc.com/class/149.html)：http://coding.imooc.com/class/149.html 
 
+## 更多组件及并发使用参考
+https://github.com/kanwangzjm/practice
+
 ## 项目需要
 * JDK 1.8及以上
 * Maven 管理jar包
