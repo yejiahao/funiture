@@ -4,7 +4,13 @@
 * [Java并发编程与高并发解决方案](http://coding.imooc.com/class/195.html)：http://coding.imooc.com/class/195.html 
 * [Java开发企业级权限管理系统](http://coding.imooc.com/class/149.html)：http://coding.imooc.com/class/149.html 
 
-## 更多组件及并发使用参考
+## 微信公众号
+TechDevPro
+
+## 个人知识星球
+【玩转大厂Java与高并发】，可关注微信公众号后获取
+
+## 更多组件代码演练
 https://github.com/kanwangzjm/practice
 
 ## 项目需要
@@ -64,7 +70,7 @@ https://github.com/kanwangzjm/practice
 
 ![avatar](https://github.com/kanwangzjm/funiture/blob/master/qrcode_258.jpg)
 
-## 近期计划
+## 之后计划
 * 在之前切库的基础上, 做动态切库(分库)操作
 * mybatis层的分表操作, 借助org.shardbatis包的com.google.code.shardbatis.plugin.ShardPlugin
 * 完成主备操作, 借助org.apache.curator包选择zk leader
