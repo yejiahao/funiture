@@ -7,25 +7,18 @@ import com.app.mvc.util.IpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Objects;
 
-/**
- * Created by jimin on 15/11/22.
- */
 @Slf4j
 public class LoginFilter implements Filter {
 
     @Override
-    public void init(FilterConfig config) throws ServletException {
+    public void init(FilterConfig config) {
         log.info("login filter init config");
     }
 
@@ -38,14 +31,14 @@ public class LoginFilter implements Filter {
         String ip = IpUtil.getUserIP(req);
 
         LoginUser loginUser = LoginUtil.getUserFromCookie(req, resp);
-        if (loginUser == null || !loginUser.isRet() || loginUser.getUser() == null) {
+        if (Objects.isNull(loginUser) || !loginUser.isRet() || Objects.isNull(loginUser.getUser())) {
             String ret = req.getRequestURI();
             String parameterString = req.getQueryString();
             if (StringUtils.isNotBlank(parameterString)) {
                 ret += "?" + parameterString;
             }
             log.info("cannot visit {}, param:{}, ip:{}, not login", servletPath, parameterString, ip);
-            resp.sendRedirect("/signin.jsp?ret=" + URLEncoder.encode(ret));
+            resp.sendRedirect("/signin.jsp?ret=" + URLEncoder.encode(ret, "UTF-8"));
             return;
         }
         RequestHolder.add(loginUser.getUser());

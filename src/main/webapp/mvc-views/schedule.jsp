@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <jsp:include page="../common/backend_common.jsp"/>
@@ -23,7 +23,8 @@
             </div>
             <div>
                 <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
-                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer"
+                           role="grid"
                            aria-describedby="dynamic-table_info" style="font-size:14px">
                         <thead>
                         <tr role="row">
@@ -69,7 +70,8 @@
             <tr>
                 <td style="width: 80px;"><label for="settingCron">调度表达式</label></td>
                 <td>
-                    <input type="text" name="cron" id="settingCron" value="" class="text ui-widget-content ui-corner-all">
+                    <input type="text" name="cron" id="settingCron" value=""
+                           class="text ui-widget-content ui-corner-all">
                     <span class="cron"></span>
                 </td>
             </tr>
@@ -104,6 +106,9 @@
     </td>
 </tr>
 {{/scheduleList}}
+
+
+
 </script>
 
 <script type="text/javascript">
@@ -122,7 +127,7 @@
                 success: function (result) {
                     renderScheduleList(result);
                 },
-                error: function() {
+                error: function () {
                     showMessage("加载任务列表", "服务器处理错误,请稍候重试", false);
                 }
             });
@@ -177,7 +182,7 @@
                         $(".cron").html('');
                     }
                 },
-                error: function() {
+                error: function () {
                     showMessage("计算调度时间出错", "服务器处理错误,请稍候重试", false);
                     $(".cron").html('');
                 }
@@ -247,7 +252,7 @@
                     }
                 }
                 ,
-                error: function() {
+                error: function () {
                     if (failCallback) {
                         failCallback(result);
                     }

@@ -26,9 +26,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-/**
- * Created by jimin on 16/2/6.
- */
 @Slf4j
 public class AclControlFilter implements Filter {
 

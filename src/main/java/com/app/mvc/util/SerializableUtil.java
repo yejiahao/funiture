@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-/**
- * Created by jimin on 16/5/5.
- */
 public class SerializableUtil {
 
     /**

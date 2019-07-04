@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * Created by jimin on 15/10/27.
- */
 @Slf4j
 @Controller
 @RequestMapping("/product")
@@ -25,20 +22,20 @@ public class ProductController {
 
     @ResponseBody
     @RequestMapping(value = "page.json", method = RequestMethod.GET)
-    public JsonData productQuery(PageQuery pageQuery) throws Exception {
+    public JsonData productQuery(PageQuery pageQuery) {
         return JsonData.success(productService.getPage(pageQuery));
     }
 
     @ResponseBody
     @RequestMapping(value = "save.json")
-    public JsonData save(ProductPara para) throws Exception {
+    public JsonData save(ProductPara para) {
         productService.save(para);
         return JsonData.success();
     }
 
     @ResponseBody
     @RequestMapping(value = "delete.json")
-    public JsonData delete(@RequestParam("id") int id) throws Exception {
+    public JsonData delete(@RequestParam("id") int id) {
         productService.delete(id);
         return JsonData.success();
     }

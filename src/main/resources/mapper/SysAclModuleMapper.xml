@@ -8,14 +8,14 @@
     <sql id="sysAclModuleColumns">
         id,
         name,
-        parent_id as parentId,
+        parent_id AS parentId,
         level,
         status,
         seq,
         remark,
         operator,
-        operate_time as operateTime,
-        operate_ip as operateIp
+        operate_time AS operateTime,
+        operate_ip AS operateIp
     </sql>
 
     <insert id="save" parameterType="SysAclModule" useGeneratedKeys="true" keyColumn="id">

@@ -4,9 +4,6 @@ import com.app.mvc.acl.domain.SysUser;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created by jimin on 16/1/16.
- */
 public class RequestHolder {
 
     private static final ThreadLocal<SysUser> userHolder = new ThreadLocal<>();

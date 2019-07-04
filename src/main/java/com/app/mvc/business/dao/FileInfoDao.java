@@ -4,9 +4,6 @@ import com.app.mvc.business.domain.FileInfo;
 import com.app.mvc.common.DBRepository;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * Created by jimin on 15/11/29.
- */
 @DBRepository
 public interface FileInfoDao {
 

@@ -21,10 +21,7 @@ import java.util.zip.GZIPInputStream;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * Created by jimin on 16/03/10.
- */
-@ToString(exclude = { "bytes" })
+@ToString(exclude = {"bytes"})
 public class ResponseWrapper {
     @Setter
     @Getter

@@ -34,10 +34,6 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import static org.apache.http.conn.params.ConnRoutePNames.DEFAULT_PROXY;
 
-/**
- * Created by jimin on 16/5/5.
- */
-
 @Slf4j
 public class ProxyManager {
 

@@ -14,9 +14,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * Created by jimin on 16/1/18.
- */
 @Service
 public class SysRoleService implements SysService {
 

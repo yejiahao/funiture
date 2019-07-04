@@ -8,9 +8,6 @@ import org.apache.commons.collections.CollectionUtils;
 import java.lang.reflect.Method;
 import java.util.List;
 
-/**
- * Created by jimin on 16/5/9.
- */
 @Slf4j
 public class AutoRegisterScheduleJob {
 
@@ -25,7 +22,7 @@ public class AutoRegisterScheduleJob {
             String className = clazz.getName();
             if (scheduleJobSettingDao.countByClassPath(className) == 0) {
                 try {
-                    Object instance = clazz.newInstance(); // 此处需要使用实例化后的对象去invoke才能拿到方法的返回值
+                    Object instance = clazz.newInstance();// 此处需要使用实例化后的对象去invoke才能拿到方法的返回值
                     Method scheduleIdMethod = clazz.getDeclaredMethod("scheduleId");
                     Method groupIdMethod = clazz.getDeclaredMethod("groupId");
                     log.info("find a new schedule job to register, {}", className);

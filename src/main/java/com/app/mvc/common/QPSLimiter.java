@@ -11,17 +11,14 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by jimin on 16/5/6.
- */
 @Slf4j
 public class QPSLimiter {
 
     private final static String SWITCH_OPEN = "on";
     private final static String SWITCH_CLOSED = "off";
 
-    private static final Cache<String, Integer> urlQpsCache = CacheBuilder.newBuilder() //
-            .expireAfterAccess(1, TimeUnit.MINUTES)  // 每1分钟更新一次
+    private static final Cache<String, Integer> urlQpsCache = CacheBuilder.newBuilder()
+            .expireAfterAccess(1, TimeUnit.MINUTES)// 每1分钟更新一次
             .build();
 
     /**

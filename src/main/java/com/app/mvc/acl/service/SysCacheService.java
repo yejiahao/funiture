@@ -11,9 +11,6 @@ import redis.clients.jedis.ShardedJedis;
 
 import javax.annotation.Resource;
 
-/**
- * Created by jimin on 16/2/4.
- */
 @Slf4j
 @Service
 public class SysCacheService {

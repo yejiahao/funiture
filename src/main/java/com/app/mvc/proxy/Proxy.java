@@ -1,8 +1,5 @@
 package com.app.mvc.proxy;
 
-/**
- * Created by jimin on 16/4/28.
- */
 public class Proxy {
 
     /**

@@ -4,9 +4,6 @@ import com.app.mvc.acl.domain.SysBase;
 import com.app.mvc.acl.domain.SysUser;
 import com.app.mvc.acl.vo.UserPara;
 
-/**
- * Created by jimin on 16/1/16.
- */
 public class UserConvert {
 
     public static SysUser of(UserPara para) {

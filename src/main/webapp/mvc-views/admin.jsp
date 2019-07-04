@@ -1,5 +1,5 @@
 <%@ page import="com.app.mvc.acl.util.LoginUtil" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -241,16 +241,16 @@
         $(".popstyle").click(function () {
             var $this = $(this)
             $("iframe").attr(
-                    'src',
-                    $this.attr("data")
+                'src',
+                $this.attr("data")
             );
         });
 
         $(".direct").click(function () {
             var $this = $(this)
             $("iframe").attr(
-                    'src',
-                    $this.attr("data-value")
+                'src',
+                $this.attr("data-value")
             );
         });
     });

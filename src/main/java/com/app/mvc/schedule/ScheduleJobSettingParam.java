@@ -6,9 +6,6 @@ import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by jimin on 16/5/8.
- */
 @Getter
 @Setter
 @ToString

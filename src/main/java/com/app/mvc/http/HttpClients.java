@@ -2,7 +2,6 @@ package com.app.mvc.http;
 
 /**
  * http客户端工厂方法，支持同步异步以及https客户端创建
- * Created by jimin on 16/03/10.
  */
 public class HttpClients {
 

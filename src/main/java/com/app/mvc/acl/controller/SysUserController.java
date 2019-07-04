@@ -15,9 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
-/**
- * Created by jimin on 16/1/18.
- */
 @Slf4j
 @Controller
 @RequestMapping("/sys/user")
@@ -72,8 +69,9 @@ public class SysUserController {
 
     @ResponseBody
     @RequestMapping(value = "/setPassword.json")
-    public JsonData setPassword(@RequestParam("mail") String mail, @RequestParam("password") String password,
-            @RequestParam("confirmPassword") String confirmPassword) {
+    public JsonData setPassword(@RequestParam("mail") String mail,
+                                @RequestParam("password") String password,
+                                @RequestParam("confirmPassword") String confirmPassword) {
         Preconditions.checkArgument(password.equals(confirmPassword), "两次输入的密码不一致");
         sysUserService.updatePassword(mail, password);
         return JsonData.success();

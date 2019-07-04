@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
-/**
- * Created by jimin on 16/1/18.
- */
 @Slf4j
 @Controller
 @RequestMapping("/sys/acl")

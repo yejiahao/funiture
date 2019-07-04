@@ -2,9 +2,6 @@ package com.app.mvc.acl.enums;
 
 import lombok.Getter;
 
-/**
- * Created by jimin on 16/1/16.
- */
 @Getter
 public enum Status {
 

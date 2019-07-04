@@ -1,9 +1,5 @@
 package com.app.mvc.shortUrl;
 
-/**
- * Created by jimin on 16/4/7.
- */
-
 import lombok.extern.slf4j.Slf4j;
 
 import java.security.MessageDigest;
@@ -15,14 +11,14 @@ public class ShortUrlUtil {
     public static String generate(String url) {
         String key = "1q2w3e4r";
 
-        String[] chars = new String[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x",
+        String[] chars = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x",
                 "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
-                "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+                "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
         String hex = md5ByHex(key + url);
 
         String[] resUrl = new String[4];
-        for (int i = 0; i < 4; i++) { //将产生4组6位字符串
+        for (int i = 0; i < 4; i++) {// 将产生4组6位字符串
             // 把加密字符按照 8 位一组 16 进制与 0x3FFFFFFF 进行位与运算
             String sTempSubString = hex.substring(i * 8, i * 8 + 8);
 

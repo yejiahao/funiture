@@ -9,15 +9,12 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by jimin on 16/3/21.
- */
 @Slf4j
 public class TestThreadPool {
 
     private static ConcurrentMap<Integer, ThreadPoolExecutor> threadPoolExecutorMap = Maps.newConcurrentMap();
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         for (int i = 0; i < 3000; i++) {
             threadPoolExecutorMap.put(i, newDefaultExecutor());
         }
@@ -38,13 +35,12 @@ public class TestThreadPool {
     }
 
     private static ThreadPoolExecutor newDefaultExecutor() {
-        return new ThreadPoolExecutor(1,              // 核心池大小
-                2,                                    // 最大线程数
-                1200,                                 // 空闲等待时间
-                TimeUnit.SECONDS,                     // 时间单位
-                new ArrayBlockingQueue<Runnable>(40), // 循环数组 + 指定大小
-                new DiscardOldestPolicy()             // 最早的丢弃, 可以根据需要调整
-        );
+        return new ThreadPoolExecutor(1,
+                2,
+                1200,
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(40),
+                new DiscardOldestPolicy());
     }
 
     /**

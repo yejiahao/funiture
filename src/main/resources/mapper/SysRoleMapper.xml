@@ -10,11 +10,11 @@
         name,
         type,
         status,
-        supplier_id as supplierId,
+        supplier_id AS supplierId,
         remark,
         operator,
-        operate_time as operateTime,
-        operate_ip as operateIp
+        operate_time AS operateTime,
+        operate_ip AS operateIp
     </sql>
 
     <insert id="save" parameterType="SysRole" useGeneratedKeys="true" keyColumn="id">

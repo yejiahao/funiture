@@ -2,16 +2,15 @@ package com.app.mvc.test;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Created by jimin on 16/3/20.
- */
+import java.util.Objects;
+
 @Slf4j
 public class TestThreadGroup {
     public static void main(String[] args) {
         ThreadGroup group = Thread.currentThread().getThreadGroup();
         ThreadGroup topGroup = group;
         // 遍历线程组树，获取根线程组
-        while (group != null) {
+        while (Objects.nonNull(group)) {
             topGroup = group;
             group = group.getParent();
         }

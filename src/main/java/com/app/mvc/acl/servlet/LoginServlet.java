@@ -15,9 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by jimin on 15/11/22.
- */
 @Slf4j
 public class LoginServlet extends HttpServlet {
 

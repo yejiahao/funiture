@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
-/**
- * Created by jimin on 16/2/2.
- */
 @Slf4j
 @Controller
 @RequestMapping("/sys/tool")

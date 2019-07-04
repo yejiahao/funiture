@@ -5,10 +5,10 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Objects;
 
 /**
  * 动态数据源
- * Created by jimin on 16/03/22.
  */
 @Slf4j
 public class DynamicDataSource extends AbstractRoutingDataSource {
@@ -20,7 +20,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     @Override
     public Connection getConnection() throws SQLException {
         Connection connection = super.getConnection();
-        if (DataSourceKeyHolder.getCurrentKey() != null) {
+        if (Objects.nonNull(DataSourceKeyHolder.getCurrentKey())) {
             log.info("Datasource route to {}, key={}", connection, DataSourceKeyHolder.getCurrentKey());
         }
         return connection;

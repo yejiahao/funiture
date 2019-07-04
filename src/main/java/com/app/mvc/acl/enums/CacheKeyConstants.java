@@ -2,10 +2,6 @@ package com.app.mvc.acl.enums;
 
 import lombok.Getter;
 
-/**
- * 缓存的前缀, 统一管理
- * Created by jimin on 16/2/4.
- */
 @Getter
 public enum CacheKeyConstants {
 

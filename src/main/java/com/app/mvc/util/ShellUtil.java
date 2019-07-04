@@ -1,16 +1,14 @@
 package com.app.mvc.util;
 
 import com.app.mvc.beans.JsonMapper;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-/**
- * Created by jimin on 16/3/20.
- */
 @Slf4j
 public class ShellUtil {
 
@@ -20,7 +18,7 @@ public class ShellUtil {
      * @param shell 需要运行的shell脚本
      */
     public static List<String> execShell(String shell) {
-        List<String> strList = Lists.newArrayList();
+        List<String> strList = new ArrayList<>();
         try {
             Runtime rt = Runtime.getRuntime();
             Process process = rt.exec(shell);
@@ -29,7 +27,7 @@ public class ShellUtil {
             LineNumberReader input = new LineNumberReader(ir);
             String line;
             process.waitFor();
-            while ((line = input.readLine()) != null) {
+            while (Objects.nonNull(line = input.readLine())) {
                 strList.add(line);
             }
         } catch (Exception e) {
@@ -44,14 +42,14 @@ public class ShellUtil {
      * @param shStr 需要执行的shell
      */
     public static List runShell(String shStr) throws Exception {
-        List<String> strList = Lists.newArrayList();
+        List<String> strList = new ArrayList<>();
         Process process;
-        process = Runtime.getRuntime().exec(new String[] { "/bin/sh", "-c", shStr }, null, null);
+        process = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", shStr}, null, null);
         InputStreamReader ir = new InputStreamReader(process.getInputStream());
         LineNumberReader input = new LineNumberReader(ir);
         String line;
         process.waitFor();
-        while ((line = input.readLine()) != null) {
+        while (Objects.nonNull(line = input.readLine())) {
             strList.add(line);
         }
         return strList;

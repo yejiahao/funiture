@@ -1,8 +1,5 @@
 package com.app.mvc.config;
 
-/**
- * Created by jimin on 16/5/7.
- */
 public class GlobalConfigKey {
 
     /**

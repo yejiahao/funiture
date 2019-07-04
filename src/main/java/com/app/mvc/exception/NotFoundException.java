@@ -1,8 +1,5 @@
 package com.app.mvc.exception;
 
-/**
- * Created by jimin on 15/11/7.
- */
 public class NotFoundException extends RuntimeException {
 
     public NotFoundException() {

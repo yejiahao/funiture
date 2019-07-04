@@ -12,22 +12,14 @@ import com.app.mvc.acl.dto.DeptLevelDto;
 import com.app.mvc.acl.enums.Status;
 import com.app.mvc.acl.util.LevelUtil;
 import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-/**
- * Created by jimin on 16/1/24.
- */
 @Service
 public class SysTreeService {
 
@@ -43,7 +35,7 @@ public class SysTreeService {
      */
     public List<AclModuleLevelDto> aclTree() {
         List<SysAcl> list = sysAclDao.getAll();
-        List<AclDto> aclDtoList = Lists.newArrayList();
+        List<AclDto> aclDtoList = new ArrayList<>();
         for (SysAcl acl : list) {
             aclDtoList.add(AclDto.adapt(acl));
         }
@@ -55,7 +47,7 @@ public class SysTreeService {
      */
     public List<AclModuleLevelDto> aclModuleTree() {
         List<SysAclModule> list = sysAclModuleDao.getAll();
-        List<AclModuleLevelDto> dtoList = Lists.newArrayList();
+        List<AclModuleLevelDto> dtoList = new ArrayList<>();
         for (SysAclModule aclModule : list) {
             dtoList.add(AclModuleLevelDto.adapt(aclModule));
         }
@@ -79,10 +71,10 @@ public class SysTreeService {
         }
 
         // 求二者并集
-        Set<SysAcl> aclSet = new HashSet<SysAcl>(roleAclList);
+        Set<SysAcl> aclSet = new HashSet<>(roleAclList);
         aclSet.addAll(userAclList);
 
-        List<AclDto> aclDtoList = Lists.newArrayList();
+        List<AclDto> aclDtoList = new ArrayList<>();
         for (SysAcl acl : aclSet) {
             AclDto dto = AclDto.adapt(acl);
             // 标记用户可操作的权限
@@ -105,9 +97,9 @@ public class SysTreeService {
     public List<DeptLevelDto> deptTree() {
         List<SysDept> deptList = sysCoreService.getCurrentUserDeptList();
         if (CollectionUtils.isEmpty(deptList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
-        List<DeptLevelDto> dtoList = Lists.newArrayList();
+        List<DeptLevelDto> dtoList = new ArrayList<>();
         for (SysDept dept : deptList) {
             dtoList.add(DeptLevelDto.adapt(dept));
         }
@@ -121,7 +113,7 @@ public class SysTreeService {
         // 获取用户列表
         List<SysUser> userList = sysCoreService.getCurrentSupplierUserList();
         if (CollectionUtils.isEmpty(userList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         // 做成部门树
         return userListToTree(userList);
@@ -144,7 +136,7 @@ public class SysTreeService {
      */
     public List<AclModuleLevelDto> aclListToTree(List<AclDto> aclList) {
         if (CollectionUtils.isEmpty(aclList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         // 做成权限树
         List<AclModuleLevelDto> aclModuleLevelList = aclModuleTree();
@@ -167,11 +159,11 @@ public class SysTreeService {
      */
     public List<AclModuleLevelDto> aclModuleListToTree(List<AclModuleLevelDto> aclModuleList) {
         if (CollectionUtils.isEmpty(aclModuleList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         // level -> [aclModule1, aclModule2, ...]
         Multimap<String, AclModuleLevelDto> levelModuleMap = ArrayListMultimap.create();
-        List<AclModuleLevelDto> rootList = Lists.newArrayList();
+        List<AclModuleLevelDto> rootList = new ArrayList<>();
 
         for (AclModuleLevelDto dto : aclModuleList) {
             levelModuleMap.put(dto.getLevel(), dto);
@@ -192,11 +184,11 @@ public class SysTreeService {
      */
     public List<DeptLevelDto> deptListToTree(List<DeptLevelDto> deptLevelList) {
         if (CollectionUtils.isEmpty(deptLevelList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         // level -> [dept1, dept2, ...]
         Multimap<String, DeptLevelDto> levelDeptMap = ArrayListMultimap.create();
-        List<DeptLevelDto> rootList = Lists.newArrayList();
+        List<DeptLevelDto> rootList = new ArrayList<>();
 
         for (DeptLevelDto dto : deptLevelList) {
             levelDeptMap.put(dto.getLevel(), dto);
@@ -219,7 +211,7 @@ public class SysTreeService {
 
     public List<DeptLevelDto> userListToTree(List<SysUser> userList) {
         if (CollectionUtils.isEmpty(userList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         // 做成部门树
         List<DeptLevelDto> deptLevelList = deptTree();

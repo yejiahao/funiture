@@ -1,12 +1,12 @@
 package com.app.mvc.util;
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.Lists;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NasdaqParser {
@@ -18,10 +18,10 @@ public class NasdaqParser {
         // 找到指定id的table及里面的body
         Element tbody = doc.select("#quotes_content_left_dividendhistoryGrid tbody").first();
         // 遍历tbody里的每个tr
-        for(Element tr : tbody.children()) {
+        for (Element tr : tbody.children()) {
             // 获取tr下面td列表
             Elements tdList = tr.children();
-            List<String> line = Lists.newArrayList();
+            List<String> line = new ArrayList<>();
             // 遍历每个td
             for (Element td : tdList) {
                 // 有的td下面包含span

@@ -8,14 +8,14 @@
     <sql id="sysDeptColumns">
         id,
         name,
-        supplier_id as supplierId,
+        supplier_id AS supplierId,
         level,
         seq,
-        parent_id as parentId,
+        parent_id AS parentId,
         remark,
         operator,
-        operate_time as operateTime,
-        operate_ip as operateIp
+        operate_time AS operateTime,
+        operate_ip AS operateIp
     </sql>
 
     <insert id="save" parameterType="SysDept" useGeneratedKeys="true" keyColumn="id">

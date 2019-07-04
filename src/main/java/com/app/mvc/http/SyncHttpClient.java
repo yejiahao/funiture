@@ -7,9 +7,6 @@ import org.apache.commons.httpclient.HttpMethodBase;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
-/**
- * Created by jimin on 16/03/10.
- */
 class SyncHttpClient extends AbstractHttpClient {
 
     private ResponseWrapper doMethod(HttpMethodBase method) {
@@ -19,7 +16,7 @@ class SyncHttpClient extends AbstractHttpClient {
             httpClient.executeMethod(method);
             wrapper = ResponseWrapper.of(method);
             callBack.onSuccess(wrapper);
-        } catch (Throwable e) { //not only exp
+        } catch (Throwable e) {// not only exp
             if (e instanceof AuthSSLInitializationError) {
                 callBack.onAuthority((AuthSSLInitializationError) e);
             } else {

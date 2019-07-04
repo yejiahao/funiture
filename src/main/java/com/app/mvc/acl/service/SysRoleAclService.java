@@ -6,19 +6,16 @@ import com.app.mvc.acl.dao.SysRoleAclDao;
 import com.app.mvc.acl.domain.SysAcl;
 import com.app.mvc.acl.domain.SysBase;
 import com.app.mvc.acl.domain.SysRoleAcl;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by jimin on 16/1/23.
- */
 @Service
 public class SysRoleAclService implements SysService {
 
@@ -34,11 +31,11 @@ public class SysRoleAclService implements SysService {
      */
     public void changeRoleAcls(int roleId, List<Integer> aclIdList) {
         List<Integer> originAclIdList = sysRoleAclDao.getAclIdListByRoleId(roleId);
-        if (originAclIdList.size() == aclIdList.size()) { // 如果调整后的长度和调整前的长度相同，检查一下是否没有调整直接做更新，这时不做更新
+        if (originAclIdList.size() == aclIdList.size()) {// 如果调整后的长度和调整前的长度相同，检查一下是否没有调整直接做更新，这时不做更新
             Set<Integer> originAclIdSet = Sets.newHashSet(originAclIdList);
             Set<Integer> aclIdSet = Sets.newHashSet(aclIdList);
             originAclIdSet.removeAll(aclIdSet);
-            if (CollectionUtils.isEmpty(originAclIdSet)) { // 说明修改前后是一样的，那就不进行操作了
+            if (CollectionUtils.isEmpty(originAclIdSet)) {// 说明修改前后是一样的，那就不进行操作了
                 return;
             }
         }
@@ -56,7 +53,7 @@ public class SysRoleAclService implements SysService {
             return;
         }
         SysBase base = BaseConvert.of();
-        List<SysRoleAcl> roleAclList = Lists.newArrayList();
+        List<SysRoleAcl> roleAclList = new ArrayList<>();
         for (Integer aclId : aclIdList) {
             roleAclList.add(SysRoleAcl.builder().roleId(roleId).aclId(aclId).operator(base.getOperator()).operateIp(base.getOperateIp()).build());
         }
@@ -68,7 +65,7 @@ public class SysRoleAclService implements SysService {
     public List<SysAcl> getListByRoleId(int roleId) {
         List<Integer> aclIdList = sysRoleAclDao.getAclIdListByRoleId(roleId);
         if (CollectionUtils.isEmpty(aclIdList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         return sysAclDao.getByIdList(aclIdList);
     }

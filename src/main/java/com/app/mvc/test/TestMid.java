@@ -1,13 +1,12 @@
 package com.app.mvc.test;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 指定数据计算中位数
- * Created by jimin on 16/7/7.
  */
 public class TestMid {
 
@@ -18,9 +17,9 @@ public class TestMid {
     // 桶的区间
     public static int RANGE_LENGTH = 1000;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         // 初始化点数据
-        List<Integer> list = Lists.newArrayList();
+        List<Integer> list = new ArrayList<>();
         for (int i = 1; i <= MAX_LENGTH; i++) {
             list.add(i);
         }
@@ -28,8 +27,8 @@ public class TestMid {
         System.out.println(getMid(list));
     }
 
-    public static int getMid(List<Integer> list) throws Exception {
-        if (list == null) {
+    public static int getMid(List<Integer> list) {
+        if (Objects.isNull(list)) {
             throw new RuntimeException("c");
         }
         int size = list.size();
@@ -40,7 +39,7 @@ public class TestMid {
         int base = (MAX_VALUE + RANGE_LENGTH - 1) / RANGE_LENGTH + 1;
         List<Integer> s[] = new List[base];
         for (int i = 0; i < base; i++) {
-            s[i] = Lists.newArrayList();
+            s[i] = new ArrayList<>();
         }
 
         // 遍历入桶
@@ -65,8 +64,8 @@ public class TestMid {
         return getK(s[index], mid - 1);
     }
 
-    public static int getK(List<Integer> list, int k) throws Exception {
-        if (list == null || k > list.size()) {
+    public static int getK(List<Integer> list, int k) {
+        if (Objects.isNull(list) || k > list.size()) {
             throw new RuntimeException("cc");
         }
         Collections.sort(list);

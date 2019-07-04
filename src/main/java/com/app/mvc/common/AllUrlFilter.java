@@ -18,9 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-/**
- * Created by jimin on 16/4/23.
- */
 @Slf4j
 public class AllUrlFilter implements Filter {
 
@@ -63,10 +60,11 @@ public class AllUrlFilter implements Filter {
         // 无权限访问的页面
         String noAuthPage = getServiceDegardingPage();
 
-        //判断请求类型
+        // 判断请求类型
         if (StringUtils.isNotEmpty(requestAccept)) {
-            if (StringUtils.contains(requestAccept, "application/json") || StringUtils.contains(requestAccept, "text/javascript") || StringUtils
-                    .contains(requestAccept, "text/json")) {
+            if (StringUtils.contains(requestAccept, "application/json")
+                    || StringUtils.contains(requestAccept, "text/javascript")
+                    || StringUtils.contains(requestAccept, "text/json")) {
                 contentType = "application/json";
             }
         }

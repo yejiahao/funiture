@@ -8,9 +8,6 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by jimin on 16/2/2.
- */
 @DBRepository
 public interface SysToolDao {
 

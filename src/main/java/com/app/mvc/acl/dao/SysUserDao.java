@@ -7,9 +7,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * Created by jimin on 16/1/18.
- */
 @DBRepository
 public interface SysUserDao {
 

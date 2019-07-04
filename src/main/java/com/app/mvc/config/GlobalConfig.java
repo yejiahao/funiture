@@ -7,7 +7,6 @@ import com.app.mvc.http.HttpClients;
 import com.app.mvc.proxy.ProxyManager;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
@@ -16,13 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.util.CollectionUtils;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-/**
- * Created by jimin on 15/11/7.
- */
 @Slf4j
 public class GlobalConfig {
 
@@ -42,7 +36,7 @@ public class GlobalConfig {
         if (CollectionUtils.isEmpty(configurationList)) {
             log.info("no config");
         }
-        Map<String, String> tempMap = Maps.newHashMap();
+        Map<String, String> tempMap = new HashMap<>();
         for (Configuration configuration : configurationList) {
             tempMap.put(configuration.getK(), configuration.getV().trim());
         }
@@ -60,7 +54,7 @@ public class GlobalConfig {
         loadAllConfig();
 
         Set<String> machineSet = GlobalConfig.getSetValue(GlobalConfigKey.MACHINE_LIST);
-        List<String> result = Lists.newArrayList();
+        List<String> result = new ArrayList<>();
         for (String machine : machineSet) {
             String url = StringUtils.join(machine, "/config/reload.json");
             try {
@@ -135,7 +129,7 @@ public class GlobalConfig {
     }
 
     public static List<String> getListStringValue(String k, String separator) {
-        List<String> result = Lists.newArrayList();
+        List<String> result = new ArrayList<>();
         if (!configMap.containsKey(k)) {
             return result;
         }
@@ -159,7 +153,7 @@ public class GlobalConfig {
     }
 
     public static List<Integer> getListIntValue(String k, String separator) {
-        List<Integer> result = Lists.newArrayList();
+        List<Integer> result = new ArrayList<>();
         if (!configMap.containsKey(k)) {
             return result;
         }
@@ -177,7 +171,7 @@ public class GlobalConfig {
             }
         } catch (NumberFormatException e) {
             log.error("List<Integer> parse error, k:{}, v:{}", k, v, e);
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         listIntMap.put(k, result);
         return result;
@@ -188,7 +182,7 @@ public class GlobalConfig {
     }
 
     public static Map<String, String> getMapValue(String k, String sep1, String sep2) {
-        Map<String, String> result = Maps.newHashMap();
+        Map<String, String> result = new HashMap<>();
         if (!configMap.containsKey(k)) {
             return result;
         }

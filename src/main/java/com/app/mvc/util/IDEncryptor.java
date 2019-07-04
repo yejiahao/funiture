@@ -2,14 +2,13 @@ package com.app.mvc.util;
 
 import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 通用加密解密工具，支持Integer加密解密。生成10位加密结果
- * Created by jimin on 16/2/10
  */
 @Slf4j
 public class IDEncryptor {
@@ -200,7 +199,7 @@ public class IDEncryptor {
      * @throws Exception 其中有一个id出错就抛出异常
      */
     public static List<Integer> decrypt(List<String> ids) throws Exception {
-        List<Integer> list = Lists.newArrayList();
+        List<Integer> list = new ArrayList<>();
         for (String id : ids) {
             list.add(decrypt(id));
         }
@@ -216,7 +215,7 @@ public class IDEncryptor {
      * @throws Exception
      */
     public static List<Integer> decrypt(String ids, String separator) throws Exception {
-        List<Integer> list = Lists.newArrayList();
+        List<Integer> list = new ArrayList<>();
         for (String id : Splitter.on(separator).trimResults().omitEmptyStrings().split(ids)) {
             list.add(decrypt(id));
         }
@@ -241,7 +240,7 @@ public class IDEncryptor {
      * @return
      */
     public static List<String> encrypt(List<Integer> ids) throws Exception {
-        List<String> list = Lists.newArrayList();
+        List<String> list = new ArrayList<>();
         for (Integer id : ids) {
             list.add(encrypt(id));
         }
@@ -302,7 +301,7 @@ public class IDEncryptor {
      * @return
      */
     public static List<String> encode(List<Integer> ids) {
-        List<String> list = Lists.newArrayList();
+        List<String> list = new ArrayList<>();
         for (Integer id : ids) {
             list.add(encode(id));
         }
@@ -353,7 +352,7 @@ public class IDEncryptor {
      * @return
      */
     public static List<Integer> decode(List<String> ids) {
-        List<Integer> list = Lists.newArrayList();
+        List<Integer> list = new ArrayList<>();
         for (String id : ids) {
             list.add(decode(id));
         }
@@ -368,7 +367,7 @@ public class IDEncryptor {
      * @return
      */
     public static List<Integer> decode(String ids, String separator) {
-        List<Integer> list = Lists.newArrayList();
+        List<Integer> list = new ArrayList<>();
         for (String id : Splitter.on(separator).trimResults().omitEmptyStrings().split(ids)) {
             Integer result = decode(id);
             //tolerate the illegal result

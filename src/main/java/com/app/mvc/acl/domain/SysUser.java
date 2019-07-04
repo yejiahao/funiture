@@ -10,17 +10,13 @@ import lombok.ToString;
 
 import java.util.Date;
 
-/**
- * Created by jimin on 16/1/16.
- */
-
 @ToString
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = { "id" })
+@EqualsAndHashCode(of = {"id"})
 public class SysUser {
 
     private Integer id;

@@ -2,9 +2,6 @@ package com.app.mvc.schedule;
 
 import lombok.Getter;
 
-/**
- * Created by jimin on 16/5/9.
- */
 @Getter
 public enum ScheduleExecuteStatus {
     RUNNING(0, "正在运行"),

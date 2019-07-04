@@ -2,18 +2,16 @@ package com.app.mvc.util;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
 import com.google.common.reflect.ClassPath;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.google.common.reflect.ClassPath.from;
 
-/**
- * Created by jimin on 16/5/9.
- */
 public class ClassUtil {
 
     /**
@@ -25,7 +23,7 @@ public class ClassUtil {
      */
     public static boolean hasSuperClass(Class<?> clazz, Class<?> superClass) {
         /** 递归退出 */
-        return clazz != null && (clazz.getSuperclass() == superClass || hasSuperClass(clazz.getSuperclass(), superClass));
+        return Objects.nonNull(clazz) && (clazz.getSuperclass() == superClass || hasSuperClass(clazz.getSuperclass(), superClass));
     }
 
     /**
@@ -37,8 +35,9 @@ public class ClassUtil {
      */
     public static boolean hasInterface(Class<?> clazz, Class<?> iface) {
         /** 递归退出 */
-        if (clazz == null)
+        if (Objects.isNull(clazz)) {
             return false;
+        }
         Class<?>[] ifaces = clazz.getInterfaces();
         for (Class<?> aClass : ifaces) {
             if (iface == aClass) {
@@ -57,7 +56,7 @@ public class ClassUtil {
      * @return boolean
      */
     public static <e extends Annotation> boolean hasAnnotation(Class clazz, Class<e> annotation) {
-        return clazz.getAnnotation(annotation) != null;
+        return Objects.nonNull(clazz.getAnnotation(annotation));
     }
 
     /**
@@ -100,12 +99,12 @@ public class ClassUtil {
         }
     }
 
-    public static List<Class> getSubClassList(Class clazz, String packagePreffix) {
-        List<Class> list = Lists.newArrayList();
+    public static List<Class> getSubClassList(Class clazz, String packagePrefix) {
+        List<Class> list = new ArrayList<>();
         try {
-            ImmutableSet<ClassPath.ClassInfo> immutableSet = from(clazz.getClassLoader()).getTopLevelClassesRecursive(packagePreffix);
+            ImmutableSet<ClassPath.ClassInfo> immutableSet = from(clazz.getClassLoader()).getTopLevelClassesRecursive(packagePrefix);
             for (ClassPath.ClassInfo classInfo : immutableSet) {
-                if (classInfo.getName().startsWith(packagePreffix)) {
+                if (classInfo.getName().startsWith(packagePrefix)) {
                     try {
                         Class curClazz = classInfo.load();
                         if (clazz.isAssignableFrom(curClazz) && !clazz.equals(curClazz)) {

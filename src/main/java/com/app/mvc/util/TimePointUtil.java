@@ -5,7 +5,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * 时间点压缩，解压工具类，用于将时间点（小时，分钟）进行压缩，使其
  * 成为一个新的组合数字，减少存储和传输所占的空间
- * Created by jimin on 16/3/10
  */
 public class TimePointUtil {
 
@@ -21,7 +20,7 @@ public class TimePointUtil {
      * @return
      */
     public static short[] decode(short val) {
-        return new short[] { (short) (val >> HALF_SHIFT), (short) (val & 0xFF) };
+        return new short[]{(short) (val >> HALF_SHIFT), (short) (val & 0xFF)};
     }
 
     /**

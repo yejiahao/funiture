@@ -26,8 +26,8 @@ public class Captcha {
     // 验证码图片Buffer
     private BufferedImage buffImg = null;
 
-    private char[] codeSequence = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '2',
-            '3', '4', '5', '6', '7', '8', '9' };
+    private char[] codeSequence = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '2',
+            '3', '4', '5', '6', '7', '8', '9'};
 
     public Captcha() {
         this.createCode();
@@ -61,8 +61,8 @@ public class Captcha {
         int x = 0, fontHeight = 0, codeY = 0;
         int red = 0, green = 0, blue = 0;
 
-        x = width / (codeCount + 2);//每个字符的宽度
-        fontHeight = height - 2;//字体的高度
+        x = width / (codeCount + 2);// 每个字符的宽度
+        fontHeight = height - 2;// 字体的高度
         codeY = height - 4;
 
         // 图像buffer

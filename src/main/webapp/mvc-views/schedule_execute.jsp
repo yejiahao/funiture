@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <jsp:include page="../common/backend_common.jsp"/>
@@ -28,7 +28,8 @@
                         <div class="col-xs-6">
                             <div class="dataTables_length" id="dynamic-table_length"><label>
                                 展示
-                                <select id="pageSize" name="dynamic-table_length" aria-controls="dynamic-table" class="form-control input-sm">
+                                <select id="pageSize" name="dynamic-table_length" aria-controls="dynamic-table"
+                                        class="form-control input-sm">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
@@ -37,7 +38,8 @@
                             </div>
                         </div>
                     </div>
-                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer"
+                           role="grid"
                            aria-describedby="dynamic-table_info" style="font-size:14px">
                         <thead>
                         <tr role="row">
@@ -74,7 +76,6 @@
     <td>{{showStatus}}</td>
 </tr>
 {{/executeResultList}}
-
 </script>
 
 <script type="text/javascript">

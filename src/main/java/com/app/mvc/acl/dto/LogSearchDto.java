@@ -8,9 +8,6 @@ import lombok.ToString;
 
 import java.sql.Timestamp;
 
-/**
- * Created by jimin on 16/1/23.
- */
 @ToString
 @Getter
 @Setter

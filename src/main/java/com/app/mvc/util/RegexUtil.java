@@ -7,7 +7,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * 系统中经常使用正则表达式工具，比如判断字符串是否含有中文，
  * 电话号码是否正确等等.因此改类封装了常用正则表达式
- * Created by jimin on 16/3/10
  */
 public class RegexUtil {
 

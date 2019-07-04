@@ -2,10 +2,6 @@ package com.app.mvc.acl.util;
 
 import org.apache.commons.lang3.StringUtils;
 
-/**
- * Created by jimin on 16/1/16.
- */
-
 public class LevelUtil {
 
     // 层级间的分隔符
@@ -23,7 +19,7 @@ public class LevelUtil {
     public static String calculateLevel(String parentLevel, int parentId) {
         if (StringUtils.isBlank(parentLevel)) {
             // 首层是0
-            return String.valueOf(ROOT);
+            return ROOT;
         } else {
             // 非首层：父层level.父层id
             return StringUtils.join(parentLevel, SEPARATOR, parentId);

@@ -1,11 +1,7 @@
 package com.app.mvc.acl.service;
 
 import com.app.mvc.acl.config.LogTypeServiceConfig;
-import com.app.mvc.acl.dao.SysAclDao;
-import com.app.mvc.acl.dao.SysDeptDao;
-import com.app.mvc.acl.dao.SysRoleAclDao;
-import com.app.mvc.acl.dao.SysRoleUserDao;
-import com.app.mvc.acl.dao.SysUserDao;
+import com.app.mvc.acl.dao.*;
 import com.app.mvc.acl.domain.SysAcl;
 import com.app.mvc.acl.domain.SysDept;
 import com.app.mvc.acl.domain.SysLog;
@@ -18,18 +14,15 @@ import com.app.mvc.beans.JsonMapper;
 import com.app.mvc.config.GlobalConfig;
 import com.app.mvc.config.GlobalConfigKey;
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jimin on 16/1/23.
- */
 @Service
 public class SysCoreService {
 
@@ -115,12 +108,12 @@ public class SysCoreService {
         // 获取用户角色id列表
         List<Integer> userRoleIdList = sysRoleUserDao.getRoleIdListByUserId(userId);
         if (CollectionUtils.isEmpty(userRoleIdList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         // 获取角色列表对应的权限点列表
         List<Integer> userAclIdList = sysRoleAclDao.getAclIdListByRoleIdList(userRoleIdList);
         if (CollectionUtils.isEmpty(userAclIdList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         return sysAclDao.getByIdList(userAclIdList);
     }
@@ -129,7 +122,7 @@ public class SysCoreService {
         // 获取用户角色id列表
         List<Integer> userRoleIdList = sysRoleUserDao.getRoleIdListByUserId(userId);
         if (CollectionUtils.isEmpty(userRoleIdList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         // 获取角色列表对应的权限点列表
         return sysRoleAclDao.getAclIdListByRoleIdList(userRoleIdList);
@@ -141,7 +134,7 @@ public class SysCoreService {
     public List<SysAcl> getRoleAclList(int roleId) {
         List<Integer> roleAclIdList = sysRoleAclDao.getAclIdListByRoleId(roleId);
         if (CollectionUtils.isEmpty(roleAclIdList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         return sysAclDao.getByIdList(roleAclIdList);
     }
@@ -152,7 +145,7 @@ public class SysCoreService {
     public List<SysUser> getRoleUserList(int roleId) {
         List<Integer> roleUserIdList = sysRoleUserDao.getUserIdListByRoleId(roleId);
         if (CollectionUtils.isEmpty(roleUserIdList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         return sysUserDao.getByIdList(roleUserIdList);
     }
@@ -190,6 +183,7 @@ public class SysCoreService {
         }
         return cacheValue.equals(HAS_ACL);
     }
+
     public boolean hasUrlAcl(String url) {
         Preconditions.checkNotNull(url, "url不可以为空");
         if (isRootUser()) {
@@ -219,9 +213,10 @@ public class SysCoreService {
         }
         return cacheValue.equals(HAS_ACL);
     }
+
     public boolean hasCodeAcl(String code) {
         Preconditions.checkNotNull(code, "code不可以为空");
-        if (isRootUser()) { // 可能会避免不必要的对sys_acl表的查询
+        if (isRootUser()) {// 可能会避免不必要的对sys_acl表的查询
             return true;
         }
         SysAcl acl = sysAclDao.findByCode(code);
@@ -235,7 +230,7 @@ public class SysCoreService {
      * @return
      */
     public boolean hasAcl(int id) {
-        if (isRootUser()) { // 可能会避免不必要的对sys_acl表的查询
+        if (isRootUser()) {// 可能会避免不必要的对sys_acl表的查询
             return true;
         }
         SysAcl acl = sysAclDao.findById(id);
@@ -253,7 +248,7 @@ public class SysCoreService {
         if (checkRootUser && isRootUser()) {
             return true;
         }
-        if (acl == null || acl.getStatus() != Status.AVAILABLE.getCode()) { // 不存在或未生效的,按照有权限处理
+        if (acl == null || acl.getStatus() != Status.AVAILABLE.getCode()) {// 不存在或未生效的,按照有权限处理
             return true;
         }
         List<Integer> aclIdList = getCurrentUserAclIdListFromCache();
@@ -275,10 +270,10 @@ public class SysCoreService {
         if (checkRootUser && isRootUser()) {
             return true;
         }
-        if (CollectionUtils.isEmpty(aclList)) { // 代表没配置相应的权限
+        if (CollectionUtils.isEmpty(aclList)) {// 代表没配置相应的权限
             return true;
         }
-        for (SysAcl acl : aclList) { // 遍历列表,挨个判断每个权限点是否有权限
+        for (SysAcl acl : aclList) {// 遍历列表,挨个判断每个权限点是否有权限
             if (hasAcl(acl, false)) {
                 return true;
             }
@@ -287,10 +282,10 @@ public class SysCoreService {
     }
 
     private boolean isAclUseCache() {
-        return  GlobalConfig.getStringValue(ACL_USE_CACHE_SWITCH, "false").equals("true");
+        return GlobalConfig.getStringValue(ACL_USE_CACHE_SWITCH, "false").equals("true");
     }
 
     private int aclCacheTime() {
-        return  GlobalConfig.getIntValue(ACL_CACHE_TIME, 600);
+        return GlobalConfig.getIntValue(ACL_CACHE_TIME, 600);
     }
 }

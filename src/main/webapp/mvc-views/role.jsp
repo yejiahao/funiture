@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>角色管理</title>
@@ -68,8 +68,9 @@
                     <input type="hidden" name="id" id="roleId"/>
                 </td>
             </tr>
-                <td><label for="roleRemark">备注</label></td>
-                <td><textarea name="remark" id="roleRemark" class="text ui-widget-content ui-corner-all" rows="3" cols="25"></textarea></td>
+            <td><label for="roleRemark">备注</label></td>
+            <td><textarea name="remark" id="roleRemark" class="text ui-widget-content ui-corner-all" rows="3"
+                          cols="25"></textarea></td>
             </tr>
         </table>
     </form>
@@ -93,6 +94,7 @@
         </li>
     {{/roleList}}
 </ol>
+
 </script>
 
 <script type="text/javascript">
@@ -229,7 +231,7 @@
             currentRole.addClass("no-hover");
             lastRoleId = roleId;
             $('#roleTab a:first').trigger('click');
-            if(selectFirstTab) {
+            if (selectFirstTab) {
                 loadRoleAcls(roleId);
             }
         }
@@ -254,6 +256,7 @@
                 }
             });
         }
+
         function loadRoleAcls(selectRoleId) {
             $.ajax({
                 url: "/sys/role/aclTree.json",
@@ -289,7 +292,7 @@
 
         // 绑定tab选中事件
         $('#roleTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            if(e.target.getAttribute("href") == '#roleAclTab') {
+            if (e.target.getAttribute("href") == '#roleAclTab') {
                 selectFirstTab = true;
                 loadRoleAcls(lastRoleId);
             } else {
@@ -298,7 +301,7 @@
             }
         });
 
-        $(".saveRoleAcl").click(function(e) {
+        $(".saveRoleAcl").click(function (e) {
             e.preventDefault();
             $.ajax({
                 url: '/sys/role/changeAcls.json?roleId=' + lastRoleId,

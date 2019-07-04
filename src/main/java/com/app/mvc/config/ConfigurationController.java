@@ -11,9 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
-/**
- * Created by jimin on 15/11/7.
- */
 @Slf4j
 @Controller
 @RequestMapping("/config")

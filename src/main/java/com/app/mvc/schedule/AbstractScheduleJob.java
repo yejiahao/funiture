@@ -6,20 +6,16 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-/**
- * Created by jimin on 16/5/8.
- */
 @Slf4j
 public abstract class AbstractScheduleJob implements Job {
 
     private static ScheduleExecuteResultDao scheduleExecuteResultDao = SpringHelper.popBean(ScheduleExecuteResultDao.class);
 
     @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
+    public void execute(JobExecutionContext context) {
         String scheduleId = groupId() + "_" + scheduleId();
         log.info("定时任务[{}]开始执行", scheduleId);
-        ScheduleExecuteResult scheduleExecuteResult = ScheduleExecuteResult.builder().scheduleId(scheduleId).status(ScheduleExecuteStatus.RUNNING.getCode())
-                .build();
+        ScheduleExecuteResult scheduleExecuteResult = ScheduleExecuteResult.builder().scheduleId(scheduleId).status(ScheduleExecuteStatus.RUNNING.getCode()).build();
         scheduleExecuteResultDao.save(scheduleExecuteResult);
         try {
             schedule(context);

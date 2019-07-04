@@ -10,8 +10,8 @@
         origin,
         current,
         status,
-        create_time as createTime,
-        invalid_time as invalidTime
+        create_time AS createTime,
+        invalid_time AS invalidTime
     </sql>
 
     <insert id="save" parameterType="com.app.mvc.shortUrl.ShortUrl">
@@ -22,7 +22,8 @@
     </insert>
 
     <select id="findByNewUrl" parameterType="string" resultType="com.app.mvc.shortUrl.ShortUrl">
-        SELECT <include refid="shortUrlColumns" />
+        SELECT
+        <include refid="shortUrlColumns"/>
         FROM short_url
         WHERE current = #{url}
         limit 1

@@ -3,9 +3,8 @@ package com.app.mvc.common;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 
-/**
- * Created by jimin on 15/11/21.
- */
+import java.util.Objects;
+
 @Slf4j
 public class SpringHelper {
 
@@ -20,14 +19,16 @@ public class SpringHelper {
     }
 
     public static <T> T popBean(Class<T> clazz) {
-        if (applicationContext == null)
+        if (Objects.isNull(applicationContext)) {
             return null;
+        }
         return applicationContext.getBean(clazz);
     }
 
     public static <T> T popBean(String name, Class<T> clazz) {
-        if (applicationContext == null)
+        if (Objects.isNull(applicationContext)) {
             return null;
+        }
         return applicationContext.getBean(name, clazz);
     }
 }

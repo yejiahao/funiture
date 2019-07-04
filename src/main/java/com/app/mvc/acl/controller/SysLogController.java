@@ -16,9 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
-/**
- * Created by jimin on 16/1/23.
- */
 @Slf4j
 @Controller
 @RequestMapping("/sys/log")
@@ -47,6 +44,7 @@ public class SysLogController {
         PageResult<SysLog> list = sysLogService.getPageByFuzzySearch(para, page);
         return JsonData.success(list);
     }
+
     @ResponseBody
     @RequestMapping(value = "/query.json")
     public JsonData getDept(@RequestParam("id") int id) {

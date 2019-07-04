@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
 <script id="paginateTemplate" type="x-tmpl-mustache">
 <div class="col-xs-6">
@@ -28,6 +28,8 @@
         </ul>
     </div>
 </div>
+
+
 </script>
 
 <script type="text/javascript">

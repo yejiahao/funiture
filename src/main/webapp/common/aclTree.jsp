@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <script id="aclTreeTemplate" type="x-tmpl-mustache">
 <ol class="dd-list ">
     {{#aclModuleList}}
@@ -37,6 +37,7 @@
         recursiveRenderAclModule(result.data, showCheckbox);
         bindTreeClick();
     }
+
     // 递归渲染权限模块列表
     function recursiveRenderAclModule(aclModuleList, showCheckbox) {
         if (aclModuleList && aclModuleList.length > 0) {
@@ -44,7 +45,7 @@
                 if (aclModule.aclModuleList && aclModule.aclModuleList.length > 0) {
                     var rendered = Mustache.render(aclTreeTemplate, {
                         aclModuleList: aclModule.aclModuleList,
-                        "readonly": function() {
+                        "readonly": function () {
                             return this.hasAcl ? "" : "readonly";
                         },
                         "showCheckbox": function () { // 对展示做特殊处理
@@ -52,7 +53,7 @@
                                 return showCheckbox ? "" : "hidden";
                             }
                         },
-                        "showMenu": function() {
+                        "showMenu": function () {
                             return function (text, render) {
                                 return this.type == 0 ? "<span style='color:#1b6aaa;'>(菜单)</span>" : "";
                             }
@@ -66,8 +67,8 @@
     }
 
     function bindTreeClick() {
-        $(".aclModuleIds").click(function() {
-            if($(this).attr("checked") == 'checked' || $(this).attr("checked") == true) {
+        $(".aclModuleIds").click(function () {
+            if ($(this).attr("checked") == 'checked' || $(this).attr("checked") == true) {
                 $(this).parent().find(".aclModuleIds,.aclIds").removeAttr("checked");
             } else {
                 // 同时使用attr和prop可以多次选中取消后checkout依旧能正确响应,否则总有bug

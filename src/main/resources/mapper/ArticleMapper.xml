@@ -8,12 +8,12 @@
     <sql id="articleColumns">
         id,
         content,
-        read_times as readTimes,
+        read_times AS readTimes,
         title,
-        publish_time as publishTime,
+        publish_time AS publishTime,
         operator,
-        operate_ip as operateIp,
-        operate_time as operateTime
+        operate_ip AS operateIp,
+        operate_time AS operateTime
     </sql>
 
     <insert id="save" parameterType="com.app.mvc.business.domain.Article">
@@ -34,13 +34,15 @@
     </update>
 
     <select id="findById" parameterType="int" resultType="com.app.mvc.business.domain.Article">
-        SELECT <include refid="articleColumns"/>
+        SELECT
+        <include refid="articleColumns"/>
         FROM article
         WHERE id = #{id}
     </select>
 
     <select id="getPage" parameterType="com.app.mvc.beans.PageQuery" resultType="com.app.mvc.business.domain.Article">
-        SELECT <include refid="articleColumns"/>
+        SELECT
+        <include refid="articleColumns"/>
         FROM article
         ORDER BY id DESC
         limit #{pageSize} offset #{offset}

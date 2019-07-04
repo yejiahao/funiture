@@ -2,9 +2,6 @@ package com.app.mvc.business.enums;
 
 import lombok.Getter;
 
-/**
- * Created by jimin on 16/3/8.
- */
 @Getter
 public enum BusinessModelType {
     SELF_SUPPORT("自营"),

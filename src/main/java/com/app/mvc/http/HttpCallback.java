@@ -5,7 +5,6 @@ import com.google.common.util.concurrent.FutureCallback;
 
 /**
  * http回调接口
- * Created by jimin on 16/03/10.
  */
 public interface HttpCallback extends FutureCallback<ResponseWrapper> {
 

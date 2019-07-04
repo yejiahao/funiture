@@ -9,9 +9,6 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by jimin on 16/3/25.
- */
 @Slf4j
 @Service
 public class TestService {
@@ -19,12 +16,7 @@ public class TestService {
 
     public void start() {
         while (true) {
-            getThreadPool("123").execute(new Runnable() {
-                @Override
-                public void run() {
-                    log.info(System.currentTimeMillis() + "");
-                }
-            });
+            getThreadPool("123").execute(() -> log.info(System.currentTimeMillis() + ""));
             try {
                 Thread.currentThread().sleep(10000);
             } catch (Throwable t) {
@@ -39,8 +31,12 @@ public class TestService {
         }
         log.info("init " + key);
 
-        threadPoolExecutorMap.put(key,
-                new ThreadPoolExecutor(2, 5, 120, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(10), new ThreadPoolExecutor.DiscardOldestPolicy()));
+        threadPoolExecutorMap.put(key, new ThreadPoolExecutor(2,
+                5,
+                120,
+                TimeUnit.HOURS,
+                new ArrayBlockingQueue<>(10),
+                new ThreadPoolExecutor.DiscardOldestPolicy()));
         return threadPoolExecutorMap.get(key);
     }
 }

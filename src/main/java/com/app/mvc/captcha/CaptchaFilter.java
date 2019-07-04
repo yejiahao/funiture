@@ -21,13 +21,12 @@ import java.util.Set;
 
 /**
  * 在filter里做所有验证码的验证操作
- * Created by jimin on 16/3/9.
  */
 @Slf4j
 public class CaptchaFilter implements Filter {
 
     @Override
-    public void init(FilterConfig config) throws ServletException {
+    public void init(FilterConfig config) {
         log.info("captcha filter init config");
     }
 
@@ -65,7 +64,7 @@ public class CaptchaFilter implements Filter {
         return;
     }
 
-    public void noAuth(ServletResponse resp) throws ServletException, IOException {
+    public void noAuth(ServletResponse resp) throws IOException {
         HttpServletResponse response = (HttpServletResponse) resp;
         String contentType = "application/json";
         response.setHeader("Content-Type", contentType + "; charset=UTF-8");

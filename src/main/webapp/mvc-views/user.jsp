@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <jsp:include page="../common/backend_common.jsp"/>
@@ -41,7 +41,8 @@
                         <div class="col-xs-6">
                             <div class="dataTables_length" id="dynamic-table_length"><label>
                                 展示
-                                <select id="pageSize" name="dynamic-table_length" aria-controls="dynamic-table" class="form-control input-sm">
+                                <select id="pageSize" name="dynamic-table_length" aria-controls="dynamic-table"
+                                        class="form-control input-sm">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
@@ -52,10 +53,12 @@
                         <div class="col-xs-6">
                             <div id="dynamic-table_filter" class="dataTables_filter"><label>
                                 搜索:
-                                <input type="search" class="form-control input-sm" placeholder="" aria-controls="dynamic-table"></label></div>
+                                <input type="search" class="form-control input-sm" placeholder=""
+                                       aria-controls="dynamic-table"></label></div>
                         </div>
                     </div>
-                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer"
+                           role="grid"
                            aria-describedby="dynamic-table_info" style="font-size:14px">
                         <thead>
                         <tr role="row">
@@ -98,15 +101,18 @@
             </tr>
             <tr>
                 <td><label for="deptName">名称</label></td>
-                <td><input type="text" name="name" id="deptName" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="name" id="deptName" value="" class="text ui-widget-content ui-corner-all">
+                </td>
             </tr>
             <tr>
                 <td><label for="deptSeq">顺序</label></td>
-                <td><input type="text" name="seq" id="deptSeq" value="1" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="seq" id="deptSeq" value="1" class="text ui-widget-content ui-corner-all">
+                </td>
             </tr>
             <tr>
                 <td><label for="deptRemark">备注</label></td>
-                <td><textarea name="remark" id="deptRemark" class="text ui-widget-content ui-corner-all" rows="3" cols="25"></textarea></td>
+                <td><textarea name="remark" id="deptRemark" class="text ui-widget-content ui-corner-all" rows="3"
+                              cols="25"></textarea></td>
             </tr>
         </table>
     </form>
@@ -123,15 +129,18 @@
             <tr>
                 <td><label for="userName">名称</label></td>
                 <input type="hidden" name="id" id="userId"/>
-                <td><input type="text" name="username" id="userName" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="username" id="userName" value=""
+                           class="text ui-widget-content ui-corner-all"></td>
             </tr>
             <tr>
                 <td><label for="userMail">邮箱</label></td>
-                <td><input type="text" name="mail" id="userMail" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="mail" id="userMail" value="" class="text ui-widget-content ui-corner-all">
+                </td>
             </tr>
             <tr>
                 <td><label for="userTelephone">电话</label></td>
-                <td><input type="text" name="telephone" id="userTelephone" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="telephone" id="userTelephone" value=""
+                           class="text ui-widget-content ui-corner-all"></td>
             </tr>
             <tr>
                 <td><label for="userStatus">状态</label></td>
@@ -145,7 +154,8 @@
             </tr>
             <tr>
                 <td><label for="userRemark">备注</label></td>
-                <td><textarea name="remark" id="userRemark" class="text ui-widget-content ui-corner-all" rows="3" cols="25"></textarea></td>
+                <td><textarea name="remark" id="userRemark" class="text ui-widget-content ui-corner-all" rows="3"
+                              cols="25"></textarea></td>
             </tr>
         </table>
     </form>
@@ -170,6 +180,8 @@
         </li>
     {{/deptList}}
 </ol>
+
+
 </script>
 
 <script id="userListTemplate" type="x-tmpl-mustache">
@@ -192,6 +204,8 @@
     </td>
 </tr>
 {{/userList}}
+
+
 </script>
 
 <script type="text/javascript">
@@ -310,7 +324,10 @@
                         }
                         blank += "∟";
                     }
-                    optionStr += Mustache.render("<option value='{{id}}'>{{name}}</option>", {id: dept.id, name: blank + dept.name});
+                    optionStr += Mustache.render("<option value='{{id}}'>{{name}}</option>", {
+                        id: dept.id,
+                        name: blank + dept.name
+                    });
                     if (dept.deptList.length > 0) {
                         recursiveRenderDeptSelect(dept.deptList, level + 1);
                     }

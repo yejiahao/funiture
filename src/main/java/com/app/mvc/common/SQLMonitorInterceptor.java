@@ -15,14 +15,11 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Properties;
 
-/**
- * Created by jimin on 15/12/4.
- */
-
-@Intercepts({ @Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class }),
-        @Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }) })
+@Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class}),
+        @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})})
 @Slf4j
 public class SQLMonitorInterceptor implements Interceptor {
 
@@ -68,7 +65,7 @@ public class SQLMonitorInterceptor implements Interceptor {
     }
 
     private String toJson(Object object) {
-        if (object == null) {
+        if (Objects.isNull(object)) {
             return null;
         } else {
             return JsonMapper.obj2String(object);

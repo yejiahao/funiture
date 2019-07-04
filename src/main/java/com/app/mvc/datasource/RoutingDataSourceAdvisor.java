@@ -15,7 +15,6 @@ import java.lang.reflect.Method;
 
 /**
  * 动态数据源Advisor
- * Created by jimin on 16/03/22.
  */
 @Slf4j
 @Component

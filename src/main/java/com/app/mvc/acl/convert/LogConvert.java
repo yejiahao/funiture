@@ -6,9 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.sql.Timestamp;
 
-/**
- * Created by jimin on 16/1/23.
- */
 public class LogConvert {
 
     public static LogSearchDto of(LogPara para) {

@@ -4,9 +4,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 
-/**
- * Created by jimin on 16/5/3.
- */
 public interface UrlConnectionChecker {
 
     /**

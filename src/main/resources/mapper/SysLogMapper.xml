@@ -8,12 +8,12 @@
     <sql id="sysLogColumns">
         id,
         type,
-        target_id as targetId,
+        target_id AS targetId,
         old_value,
         new_value,
         operator,
-        operate_time as operateTime,
-        operate_ip as operateIp
+        operate_time AS operateTime,
+        operate_ip AS operateIp
     </sql>
 
     <insert id="save" parameterType="SysLog">
@@ -49,13 +49,13 @@
                 AND type = #{dto.type}
             </if>
             <if test="dto.beforeSeg != null and dto.beforeSeg != ''">
-                AND old_value like #{dto.beforeSeg}
+                AND old_value LIKE #{dto.beforeSeg}
             </if>
             <if test="dto.afterSeg != null and dto.afterSeg != ''">
-                AND new_value like #{dto.afterSeg}
+                AND new_value LIKE #{dto.afterSeg}
             </if>
             <if test="dto.operator != null and dto.operator != ''">
-                AND operator like #{dto.operator}
+                AND operator LIKE #{dto.operator}
             </if>
             <if test="dto.fromTime != null">
                 AND operate_time &gt;= #{dto.fromTime}

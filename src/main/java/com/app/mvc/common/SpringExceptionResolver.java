@@ -1,7 +1,6 @@
 package com.app.mvc.common;
 
 import com.app.mvc.beans.JsonData;
-import com.app.mvc.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;

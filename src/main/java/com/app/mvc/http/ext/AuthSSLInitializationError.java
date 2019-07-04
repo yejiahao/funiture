@@ -1,8 +1,5 @@
 package com.app.mvc.http.ext;
 
-/**
- * Created by jimin on 16/03/10.
- */
 public class AuthSSLInitializationError extends Error {
 
     public AuthSSLInitializationError() {

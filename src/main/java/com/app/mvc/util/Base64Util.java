@@ -4,7 +4,6 @@ import org.apache.commons.codec.binary.Base64;
 
 /**
  * 统一项目中base64算法的使用。可避免项目中引用不同三方库去实现相同代码
- * Created by jimin on 16/2/10
  */
 public class Base64Util {
 

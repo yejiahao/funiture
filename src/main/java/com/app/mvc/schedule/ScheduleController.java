@@ -20,9 +20,6 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by jimin on 16/5/8.
- */
 @Controller
 @RequestMapping("/admin/schedule")
 public class ScheduleController {

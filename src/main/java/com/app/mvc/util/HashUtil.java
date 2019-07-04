@@ -5,9 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by jimin on 15/12/11.
- */
 @Slf4j
 public class HashUtil {
 

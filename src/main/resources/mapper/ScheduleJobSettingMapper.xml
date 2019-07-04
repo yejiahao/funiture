@@ -7,10 +7,10 @@
 
     <sql id="scheduleJobSettingColumns">
         id,
-        schedule_id as scheduleId,
-        group_id as groupId,
+        schedule_id AS scheduleId,
+        group_id AS groupId,
         cron,
-        class_path as classPath,
+        class_path AS classPath,
         status
     </sql>
 

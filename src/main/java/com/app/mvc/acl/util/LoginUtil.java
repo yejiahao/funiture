@@ -20,9 +20,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by jimin on 16/2/10.
- */
 @Slf4j
 public class LoginUtil {
 

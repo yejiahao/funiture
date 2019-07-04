@@ -13,9 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
-/**
- * Created by jimin on 16/1/18.
- */
 @Slf4j
 @Controller
 @RequestMapping("/sys/aclModule")

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <meta http-equiv="pragma" content="no-cache"/>
 <meta charset="utf-8"/>
@@ -19,9 +19,9 @@
 <![endif]-->
 <link rel="stylesheet" href="/assets/css/ace-skins.min.css"/>
 <link rel="stylesheet" href="/assets/css/ace-rtl.min.css"/>
-<link rel="stylesheet" href="/assets/css/jquery.gritter.css" />
-<link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
-<link rel="stylesheet" href="/assets/css/chosen.css" />
+<link rel="stylesheet" href="/assets/css/jquery.gritter.css"/>
+<link rel="stylesheet" href="/assets/css/jquery-ui.min.css"/>
+<link rel="stylesheet" href="/assets/css/chosen.css"/>
 <!--[if lte IE 9]>
 <link rel="stylesheet" href="/assets/css/ace-ie.min.css"/>
 <![endif]-->

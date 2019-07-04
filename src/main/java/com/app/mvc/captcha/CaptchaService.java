@@ -13,9 +13,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 
-/**
- * Created by jimin on 16/3/9.
- */
 @Slf4j
 @Service
 public class CaptchaService {
@@ -59,27 +56,21 @@ public class CaptchaService {
     }
 
     private void asyncInvalidCaptchaCode(final String code, final String sessionId) {
-        ThreadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    captchaCodeDao.invalidCaptchaCode(sessionId, code);
-                } catch (Throwable e) {
-                    log.error("invalid captcha code error, code: {}, sessionId: {}", code, sessionId, e);
-                }
+        ThreadPool.execute(() -> {
+            try {
+                captchaCodeDao.invalidCaptchaCode(sessionId, code);
+            } catch (Throwable e) {
+                log.error("invalid captcha code error, code: {}, sessionId: {}", code, sessionId, e);
             }
         });
     }
 
     public void asyncFailTry(final String sessionId) {
-        ThreadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    failTry(sessionId);
-                } catch (Throwable e) {
-                    log.error("update captcha code tryTimes error, sessionId: {}", sessionId, e);
-                }
+        ThreadPool.execute(() -> {
+            try {
+                failTry(sessionId);
+            } catch (Throwable e) {
+                log.error("update captcha code tryTimes error, sessionId: {}", sessionId, e);
             }
         });
     }
@@ -89,8 +80,9 @@ public class CaptchaService {
             return;
         }
         CaptchaCode captchaCode = captchaCodeDao.findLastBySessionId(sessionId);
-        if (captchaCode == null || captchaCode.getExpireTime().getTime() < System.currentTimeMillis() || captchaCode.getStatus() != Status.AVAILABLE
-                .getCode()) {
+        if (captchaCode == null
+                || captchaCode.getExpireTime().getTime() < System.currentTimeMillis()
+                || captchaCode.getStatus() != Status.AVAILABLE.getCode()) {
             return;
         }
         captchaCodeDao.incrTryTimes(captchaCode.getId());

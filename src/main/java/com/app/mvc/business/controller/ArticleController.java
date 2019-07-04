@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
-/**
- * Created by jimin on 16/3/8.
- */
 @Slf4j
 @Controller
 public class ArticleController {

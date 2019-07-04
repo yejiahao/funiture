@@ -22,7 +22,7 @@
     <mvc:annotation-driven/>
 
     <mvc:interceptors>
-        <bean class="com.app.mvc.common.HttpInterceptor" />
+        <bean class="com.app.mvc.common.HttpInterceptor"/>
     </mvc:interceptors>
 
     <task:annotation-driven/>
@@ -46,13 +46,10 @@
 
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
 
-    <bean id="jsonView"
-          class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
 
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:prefix="/mvc-views/"
-          p:suffix=".jsp"/>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/mvc-views/" p:suffix=".jsp"/>
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="utf-8"></property>

@@ -6,9 +6,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 
-/**
- * Created by jimin on 16/5/4.
- */
+import java.util.Objects;
+
 public class DefaultUrlConnectionChecker implements UrlConnectionChecker {
 
     private String url;
@@ -41,7 +40,7 @@ public class DefaultUrlConnectionChecker implements UrlConnectionChecker {
 
     @Override
     public HttpClient httpClient() {
-        if (httpClient == null) {
+        if (Objects.isNull(httpClient)) {
             return HttpUtil.defaultClient();
         }
         return httpClient;

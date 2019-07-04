@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>角色管理</title>
@@ -11,6 +11,7 @@
         .bootstrap-duallistbox-container .moveall, .bootstrap-duallistbox-container .removeall {
             width: 50%;
         }
+
         .bootstrap-duallistbox-container .move, .bootstrap-duallistbox-container .remove {
             width: 49%;
         }
@@ -60,12 +61,12 @@
                     </button>
                 </div>
 
-                <div id="roleUserTab" class="tab-pane fade" >
+                <div id="roleUserTab" class="tab-pane fade">
                     <div class="row">
                         <div class="box1 col-md-6">待选用户列表</div>
                         <div class="box1 col-md-6">已选用户列表</div>
                     </div>
-                    <select multiple="multiple" size="10" name="roleUserList" id="roleUserList" >
+                    <select multiple="multiple" size="10" name="roleUserList" id="roleUserList">
                     </select>
                     <div class="hr hr-16 hr-dotted"></div>
                     <button class="btn btn-info saveRoleUser" type="button">
@@ -88,7 +89,8 @@
                 </td>
             </tr>
             <td><label for="roleRemark">备注</label></td>
-            <td><textarea name="remark" id="roleRemark" class="text ui-widget-content ui-corner-all" rows="3" cols="25"></textarea></td>
+            <td><textarea name="remark" id="roleRemark" class="text ui-widget-content ui-corner-all" rows="3"
+                          cols="25"></textarea></td>
             </tr>
         </table>
     </form>
@@ -177,7 +179,7 @@
             var nodes = treeObj.getCheckedNodes(true);
             var v = "";
             for (var i = 0; i < nodes.length; i++) {
-                if(nodes[i].id.startsWith(aclPrefix)) {
+                if (nodes[i].id.startsWith(aclPrefix)) {
                     v += "," + nodes[i].dataId;
                 }
             }
@@ -213,7 +215,7 @@
                         });
                     }
                     if ((aclModule.aclModuleList && aclModule.aclModuleList.length > 0)
-                            || (aclModule.aclList && aclModule.aclList.length > 0)) {
+                        || (aclModule.aclList && aclModule.aclList.length > 0)) {
                         // 含有子元素时才将模块列表放入tree中, 用于展示
                         nodeMap[modulePrefix + aclModule.id] = {
                             id: modulePrefix + aclModule.id,
@@ -222,8 +224,8 @@
                             open: hasChecked
                         };
                         var curAclModule = nodeMap[modulePrefix + aclModule.id];
-                        while(hasChecked && curAclModule){
-                            if(curAclModule) {
+                        while (hasChecked && curAclModule) {
+                            if (curAclModule) {
                                 nodeMap[curAclModule.id] = {
                                     id: curAclModule.id,
                                     pId: curAclModule.pId,
@@ -391,7 +393,7 @@
         }
 
         function loadRoleAcls(selectRoleId) {
-            if(selectRoleId == -1) {
+            if (selectRoleId == -1) {
                 return;
             }
             $.ajax({
@@ -423,7 +425,7 @@
                         var renderedUnselect = Mustache.render(unSelectedUsersTemplate, {userList: result.data.unselected});
                         $('#roleUserList').html(renderedSelect + renderedUnselect);
 
-                        if(!hasMultiSelect) {
+                        if (!hasMultiSelect) {
                             $('select[name="roleUserList"]').bootstrapDualListbox({
                                 showFilterInputs: false,
                                 moveOnSelect: false,
@@ -442,7 +444,7 @@
 
         // 绑定tab选中事件
         $('#roleTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            if(lastRoleId == -1) {
+            if (lastRoleId == -1) {
                 showMessage("加载角色与角色关系", "请先在左侧选择操作的角色", false);
                 return;
             }
@@ -457,7 +459,7 @@
 
         $(".saveRoleAcl").click(function (e) {
             e.preventDefault();
-            if(lastRoleId == -1) {
+            if (lastRoleId == -1) {
                 showMessage("保存角色与权限点关系", "请先在左侧选择操作的角色", false);
                 return;
             }
@@ -479,7 +481,7 @@
         });
         $(".saveRoleUser").click(function (e) {
             e.preventDefault();
-            if(lastRoleId == -1) {
+            if (lastRoleId == -1) {
                 showMessage("保存角色与用户关系", "请先在左侧选择操作的角色", false);
                 return;
             }

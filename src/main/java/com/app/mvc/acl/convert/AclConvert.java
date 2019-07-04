@@ -4,9 +4,6 @@ import com.app.mvc.acl.domain.SysAcl;
 import com.app.mvc.acl.domain.SysBase;
 import com.app.mvc.acl.vo.AclPara;
 
-/**
- * Created by jimin on 16/1/16.
- */
 public class AclConvert {
 
     public static SysAcl of(AclPara para) {

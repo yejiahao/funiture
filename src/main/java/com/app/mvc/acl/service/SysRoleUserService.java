@@ -6,19 +6,16 @@ import com.app.mvc.acl.dao.SysUserDao;
 import com.app.mvc.acl.domain.SysBase;
 import com.app.mvc.acl.domain.SysRoleUser;
 import com.app.mvc.acl.domain.SysUser;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by jimin on 16/1/24.
- */
 @Service
 public class SysRoleUserService implements SysService {
 
@@ -34,11 +31,11 @@ public class SysRoleUserService implements SysService {
      */
     public void changeRoleUsers(int roleId, List<Integer> userIdList) {
         List<Integer> originUserIdList = sysRoleUserDao.getUserIdListByRoleId(roleId);
-        if (originUserIdList.size() == userIdList.size()) { // 如果调整后的长度和调整前的长度相同，检查一下是否没有调整直接做更新，这时不做更新
+        if (originUserIdList.size() == userIdList.size()) {// 如果调整后的长度和调整前的长度相同，检查一下是否没有调整直接做更新，这时不做更新
             Set<Integer> originUserIdSet = Sets.newHashSet(originUserIdList);
             Set<Integer> userIdSet = Sets.newHashSet(userIdList);
             originUserIdSet.removeAll(userIdSet);
-            if (CollectionUtils.isEmpty(originUserIdSet)) { // 说明修改前后是一样的，那就不进行操作了
+            if (CollectionUtils.isEmpty(originUserIdSet)) {// 说明修改前后是一样的，那就不进行操作了
                 return;
             }
         }
@@ -56,7 +53,7 @@ public class SysRoleUserService implements SysService {
             return;
         }
         SysBase base = BaseConvert.of();
-        List<SysRoleUser> roleUserList = Lists.newArrayList();
+        List<SysRoleUser> roleUserList = new ArrayList<>();
         for (Integer userId : userIdList) {
             roleUserList.add(SysRoleUser.builder().roleId(roleId).userId(userId).operator(base.getOperator()).operateIp(base.getOperateIp()).build());
         }
@@ -68,7 +65,7 @@ public class SysRoleUserService implements SysService {
     public List<SysUser> getListByRoleId(int roleId) {
         List<Integer> userIdList = sysRoleUserDao.getUserIdListByRoleId(roleId);
         if (CollectionUtils.isEmpty(userIdList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         return sysUserDao.getByIdList(userIdList);
     }

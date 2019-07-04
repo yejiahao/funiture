@@ -9,9 +9,6 @@ import lombok.Getter;
 
 import java.util.List;
 
-/**
- * Created by jimin on 16/1/18.
- */
 @Getter
 public enum LogType {
 
@@ -33,23 +30,23 @@ public enum LogType {
 
     public static LogType codeOf(int code) {
         switch (code) {
-        case 1:
-            return ACL;
-        case 2:
-            return ACL_MODULE;
-        case 3:
-            return USER;
-        case 4:
-            return DEPT;
-        case 5:
-            return ROLE;
-        case 6:
-            return ROLE_USER;
-        case 7:
-            return ROLE_ACL;
+            case 1:
+                return ACL;
+            case 2:
+                return ACL_MODULE;
+            case 3:
+                return USER;
+            case 4:
+                return DEPT;
+            case 5:
+                return ROLE;
+            case 6:
+                return ROLE_USER;
+            case 7:
+                return ROLE_ACL;
 
-        default:
-            throw new RuntimeException("unknown log type, code :" + code);
+            default:
+                throw new RuntimeException("unknown log type, code: " + code);
         }
     }
 }

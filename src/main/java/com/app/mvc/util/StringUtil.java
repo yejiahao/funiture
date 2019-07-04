@@ -1,7 +1,6 @@
 package com.app.mvc.util;
 
 import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ClassUtils;
@@ -10,14 +9,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-/**
- * Created by jimin on 15/12/11.
- */
 public class StringUtil {
 
     public static final String LINE_SEP = System.getProperty("line.SEPARATOR");
@@ -263,7 +256,7 @@ public class StringUtil {
 
     public static List<Integer> splierToListInt(String str) {
         List<String> strList = Splitter.on(",").splitToList(str);
-        List<Integer> list = Lists.newArrayList();
+        List<Integer> list = new ArrayList<>();
         if (CollectionUtils.isEmpty(strList)) {
             return list;
         }

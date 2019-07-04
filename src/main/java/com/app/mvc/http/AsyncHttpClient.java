@@ -9,7 +9,7 @@ import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import org.apache.commons.httpclient.HttpMethodBase;
 
-import java.util.concurrent.Callable;
+import java.util.Objects;
 import java.util.concurrent.Executors;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -17,15 +17,14 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 
 /**
  * 支持异步操作的http client
- * Created by jimin on 16/03/10.
  */
 class AsyncHttpClient extends SyncHttpClient {
 
     static ListeningExecutorService threadPool;
 
-    static { //init the thread pool
+    static {// init the thread pool
         Integer threadMax = GlobalConfig.getIntValue(GlobalConfigKey.HTTP_MAX_THREAD, 20);
-        if (threadMax == null || threadMax == 0) {
+        if (Objects.isNull(threadMax) || threadMax == 0) {
             threadPool = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
         } else {
             threadPool = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(threadMax));
@@ -50,12 +49,7 @@ class AsyncHttpClient extends SyncHttpClient {
     @Override
     public ListenableFuture<ResponseWrapper> asyncGet(final String uri) {
         checkArgument(!isNullOrEmpty(uri), "uri不能为null或空");
-        ListenableFuture<ResponseWrapper> future = threadPool.submit(new Callable<ResponseWrapper>() {
-            @Override
-            public ResponseWrapper call() throws Exception {
-                return doMethod(buildGetMethod(uri));
-            }
-        });
+        ListenableFuture<ResponseWrapper> future = threadPool.submit(() -> doMethod(buildGetMethod(uri)));
         Futures.addCallback(future, callBack);
         return future;
     }
@@ -64,12 +58,7 @@ class AsyncHttpClient extends SyncHttpClient {
     public ListenableFuture<ResponseWrapper> asyncPost(final String uri, final String content) {
         checkArgument(!isNullOrEmpty(uri), "uri不能为null或空");
         checkArgument(!isNullOrEmpty(content), "content不能为null或空");
-        ListenableFuture<ResponseWrapper> future = threadPool.submit(new Callable<ResponseWrapper>() {
-            @Override
-            public ResponseWrapper call() throws Exception {
-                return doMethod(buildPostMethod(uri, content));
-            }
-        });
+        ListenableFuture<ResponseWrapper> future = threadPool.submit(() -> doMethod(buildPostMethod(uri, content)));
         Futures.addCallback(future, callBack);
         return future;
     }
@@ -77,12 +66,7 @@ class AsyncHttpClient extends SyncHttpClient {
     @Override
     public ListenableFuture<ResponseWrapper> asyncPost(final String uri) {
         checkArgument(!isNullOrEmpty(uri), "uri不能为null或空");
-        ListenableFuture<ResponseWrapper> future = threadPool.submit(new Callable<ResponseWrapper>() {
-            @Override
-            public ResponseWrapper call() throws Exception {
-                return doMethod(buildPostMethod(uri, null));
-            }
-        });
+        ListenableFuture<ResponseWrapper> future = threadPool.submit(() -> doMethod(buildPostMethod(uri, null)));
         Futures.addCallback(future, callBack);
         return future;
     }
@@ -100,7 +84,7 @@ class AsyncHttpClient extends SyncHttpClient {
             /** we blocked here */
             httpClient.executeMethod(method);
             return ResponseWrapper.of(method);
-        } catch (Throwable e) { //not only exp
+        } catch (Throwable e) {// not only exp
             if (e instanceof AuthSSLInitializationError) {
                 callBack.onAuthority((AuthSSLInitializationError) e);
             } else {

@@ -7,9 +7,6 @@ import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 
-/**
- * Created by jimin on 15/11/21.
- */
 @Slf4j
 public class CaptchaImgFont {
 

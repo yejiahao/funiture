@@ -13,6 +13,7 @@
         <com.fasterxml.jackson.version>2.5.3</com.fasterxml.jackson.version>
         <slf4j.version>1.7.5</slf4j.version>
         <logback.version>1.0.13</logback.version>
+        <mysql.version>8.0.16</mysql.version>
     </properties>
 
     <dependencies>
@@ -146,7 +147,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.18</version>
+            <version>${mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
@@ -268,13 +269,6 @@
             <version>3.0.0</version>
         </dependency>
 
-        <!-- zookeeper -->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.hadoop</groupId>-->
-            <!--<artifactId>zookeeper</artifactId>-->
-            <!--<version>3.3.1</version>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
@@ -289,21 +283,6 @@
         </dependency>
 
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <properties>
-                <deploy.type>dev</deploy.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <deploy.type>prod</deploy.type>
-            </properties>
-        </profile>
-    </profiles>
 
     <build>
         <finalName>spring</finalName>

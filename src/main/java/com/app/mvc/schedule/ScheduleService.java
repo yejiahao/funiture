@@ -10,16 +10,7 @@ import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.quartz.CronScheduleBuilder;
-import org.quartz.CronTrigger;
-import org.quartz.JobBuilder;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.TriggerBuilder;
-import org.quartz.TriggerKey;
-import org.quartz.TriggerUtils;
+import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.springframework.stereotype.Service;
@@ -27,12 +18,11 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Nullable;
 import javax.annotation.Resource;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-/**
- * Created by jimin on 16/5/8.
- */
 @Slf4j
 @Service
 public class ScheduleService {
@@ -45,13 +35,13 @@ public class ScheduleService {
     private static Scheduler scheduler = null;
 
     static {
-        if (scheduler == null) {
+        if (Objects.isNull(scheduler)) {
             init();
         }
     }
 
     public synchronized static void init() {
-        if (scheduler != null) {
+        if (Objects.nonNull(scheduler)) {
             return;
         }
         SchedulerFactory factory = new StdSchedulerFactory();
@@ -67,7 +57,7 @@ public class ScheduleService {
      * 把所有可能的job放入调度中, 项目启动时使用
      */
     public void scheduleAll() {
-        if (scheduler == null) {
+        if (Objects.isNull(scheduler)) {
             init();
         }
         List<ScheduledJobSetting> list = scheduleJobSettingDao.getAll();
@@ -150,7 +140,7 @@ public class ScheduleService {
     public List<ScheduleJobDto> getAll() {
         List<ScheduledJobSetting> settingList = scheduleJobSettingDao.getAll();
         if (CollectionUtils.isEmpty(settingList)) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
         List<ScheduleJobDto> scheduleJobDtoList = Lists.transform(settingList, new Function<ScheduledJobSetting, ScheduleJobDto>() {
             @Nullable
@@ -160,9 +150,9 @@ public class ScheduleService {
                 ScheduleExecuteResult lastResult = scheduleExecuteResultDao.findLastExecute(resultScheduleId);
                 ScheduleJobDto dto = ScheduleJobDto.builder().id(setting.getId()).groupId(setting.getGroupId()).scheduleId(setting.getScheduleId())
                         .status(setting.getStatus()).cron(setting.getCron()).build();
-                if (lastResult != null) {
+                if (Objects.nonNull(lastResult)) {
                     dto.setLastExecuteTime(DateTimeUtil.dateTimeFrom(lastResult.getStartTime()));
-                    if (lastResult.getEndTime() != null) {
+                    if (Objects.nonNull(lastResult.getEndTime())) {
                         dto.setCostMillSeconds(lastResult.getEndTime().getTime() - lastResult.getStartTime().getTime());
                     } else {
                         dto.setCostMillSeconds(0);
@@ -200,7 +190,7 @@ public class ScheduleService {
                         @Nullable
                         @Override
                         public ScheduleExecuteResultDto apply(@Nullable ScheduleExecuteResult result) {
-                            if (result.getEndTime() != null) {
+                            if (Objects.nonNull(result.getEndTime())) {
                                 return ScheduleExecuteResultDto.builder().scheduleId(result.getScheduleId())
                                         .start(DateTimeUtil.dateTimeFrom(result.getStartTime())).end(DateTimeUtil.dateTimeFrom(result.getEndTime()))
                                         .status(result.getStatus()).costMillSeconds(result.getEndTime().getTime() - result.getStartTime().getTime()).build();

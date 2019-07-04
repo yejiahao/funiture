@@ -9,9 +9,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by jimin on 16/3/9.
- */
 @Slf4j
 @Controller
 public class CaptchaController {
@@ -20,10 +17,10 @@ public class CaptchaController {
     private CaptchaService captchaService;
 
     @RequestMapping("/captcha")
-    public void generate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void generate(HttpServletRequest request, HttpServletResponse response) {
         // 设置响应的类型格式为图片格式
         response.setContentType("image/jpeg");
-        //禁止图像缓存。
+        // 禁止图像缓存。
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expires", 0);

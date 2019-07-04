@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-/**
- * Created by jimin on 16/3/22.
- */
 @Service
 public class TestDataSourceService {
 

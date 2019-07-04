@@ -7,10 +7,10 @@
 
     <sql id="fileInfoColumns">
         id,
-        origin_name as originName,
+        origin_name AS originName,
         name,
         operator,
-        operate_time as operateTime,
+        operate_time AS operateTime,
         md5,
         size
     </sql>

@@ -3,13 +3,10 @@ package com.app.mvc.test;
 import java.util.Map;
 import java.util.Properties;
 
-/**
- * Created by jimin on 16/3/20.
- */
 public class TestSystem {
 
     public static void main(String[] args) {
-        Properties props = System.getProperties(); //系统属性
+        Properties props = System.getProperties();// 系统属性
 
         //   Set<Object> keySet = sysProperty.keySet();
         //   for (Object object : keySet) {
@@ -37,9 +34,9 @@ public class TestSystem {
         System.out.println("操作系统的名称：" + props.getProperty("os.name"));
         System.out.println("操作系统的构架：" + props.getProperty("os.arch"));
         System.out.println("操作系统的版本：" + props.getProperty("os.version"));
-        System.out.println("文件分隔符：" + props.getProperty("file.separator"));   //在 unix 系统中是＂／＂
-        System.out.println("路径分隔符：" + props.getProperty("path.separator"));   //在 unix 系统中是＂:＂
-        System.out.println("行分隔符：" + props.getProperty("line.separator"));   //在 unix 系统中是＂/n＂
+        System.out.println("文件分隔符：" + props.getProperty("file.separator"));// 在 unix 系统中是＂／＂
+        System.out.println("路径分隔符：" + props.getProperty("path.separator"));// 在 unix 系统中是＂:＂
+        System.out.println("行分隔符：" + props.getProperty("line.separator"));// 在 unix 系统中是＂/n＂
         System.out.println("用户的账户名称：" + props.getProperty("user.name"));
         System.out.println("用户的主目录：" + props.getProperty("user.home"));
         System.out.println("用户的当前工作目录：" + props.getProperty("user.dir"));

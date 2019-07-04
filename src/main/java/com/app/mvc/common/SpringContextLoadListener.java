@@ -5,9 +5,6 @@ import org.springframework.web.context.ContextLoaderListener;
 
 import javax.servlet.ServletContextEvent;
 
-/**
- * Created by jimin on 15/11/8.
- */
 @Slf4j
 public class SpringContextLoadListener extends ContextLoaderListener {
 

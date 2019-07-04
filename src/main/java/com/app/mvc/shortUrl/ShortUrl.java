@@ -9,9 +9,6 @@ import lombok.ToString;
 
 import java.util.Date;
 
-/**
- * Created by jimin on 16/4/7.
- */
 @Getter
 @Setter
 @ToString

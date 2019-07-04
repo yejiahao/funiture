@@ -42,7 +42,7 @@
         <include refid="configurationColumn"/>
         FROM configuration
         ORDER BY id DESC
-        limit #{offset},#{pageSize}
+        limit #{offset}, #{pageSize}
     </select>
 
     <update id="updateByK" parameterType="com.app.mvc.config.Configuration">

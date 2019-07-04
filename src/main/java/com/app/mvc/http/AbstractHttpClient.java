@@ -7,15 +7,9 @@ import com.app.mvc.http.ext.EasySSLProtocolSocketFactory;
 import com.google.common.base.Strings;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.ListenableFuture;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HostConfiguration;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.HttpMethodRetryHandler;
-import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.cookie.CookiePolicy;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -30,6 +24,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +35,6 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 
 /**
  * 封装了apache的HttpClient，简化同步，异步，https，代理设置，get/post请求
- * Created by jimin on 16/03/10.
  */
 @Slf4j
 @NotThreadSafe
@@ -57,9 +52,9 @@ public abstract class AbstractHttpClient {
 
     protected final HttpClient httpClient = new HttpClient();
     protected HttpCallback callBack = DefaultConfig.DEFAULT_CALLBACK;
-    protected Map<String, String> headers = Maps.newHashMap();
+    protected Map<String, String> headers = new HashMap<>();
     protected HttpMethodRetryHandler retryHandler;
-    protected List<NameValuePair> parameters = Lists.newArrayList();
+    protected List<NameValuePair> parameters = new ArrayList<>();
     protected URL keyStoreUrl;
     protected String keyStorePwd;
     protected URL trustStoreUrl;

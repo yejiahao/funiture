@@ -12,10 +12,6 @@ import java.util.Date;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * Created by jimin on 15/11/29.
- */
-
 public class DateTimeUtil {
 
     private static final String DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";

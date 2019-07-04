@@ -5,9 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
 
-/**
- * Created by jimin on 15/11/7.
- */
 @Getter
 @Setter
 @ToString

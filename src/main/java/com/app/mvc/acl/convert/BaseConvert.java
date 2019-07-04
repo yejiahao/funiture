@@ -11,9 +11,6 @@ import org.apache.commons.collections.MapUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-/**
- * Created by jimin on 16/1/16.
- */
 public class BaseConvert {
 
     public static SysBase of() {

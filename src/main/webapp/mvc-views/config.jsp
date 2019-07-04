@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <jsp:include page="../common/backend_common.jsp"/>
@@ -22,8 +22,8 @@
             <button class="btn btn-info loadAllMachine" type="button">
                 所有机器重新加载配置
             </button>
-            <br />
-            <br />
+            <br/>
+            <br/>
             <div class="table-header">
                 配置列表&nbsp;&nbsp;
                 <a class="green" href="#">
@@ -36,7 +36,8 @@
                         <div class="col-xs-6">
                             <div class="dataTables_length" id="dynamic-table_length"><label>
                                 展示
-                                <select id="pageSize" name="dynamic-table_length" aria-controls="dynamic-table" class="form-control input-sm">
+                                <select id="pageSize" name="dynamic-table_length" aria-controls="dynamic-table"
+                                        class="form-control input-sm">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
@@ -45,7 +46,8 @@
                             </div>
                         </div>
                     </div>
-                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer"
+                           role="grid"
                            aria-describedby="dynamic-table_info" style="font-size:14px">
                         <thead>
                         <tr role="row">
@@ -90,6 +92,7 @@
     </td>
 </tr>
 {{/configList}}
+
 </script>
 
 <div id="dialog-config-form" style="display: none;">
@@ -104,12 +107,14 @@
             <tr>
                 <td style="width: 80px;"><label for="configV">配置值</label></td>
                 <td>
-                    <textarea name="v" id="configV" class="text ui-widget-content ui-corner-all" rows="3" cols="25"></textarea>
+                    <textarea name="v" id="configV" class="text ui-widget-content ui-corner-all" rows="3"
+                              cols="25"></textarea>
                 </td>
             </tr>
             <tr>
                 <td><label for="configComment">备注</label></td>
-                <td><textarea name="comment" id="configComment" class="text ui-widget-content ui-corner-all" rows="3" cols="25"></textarea></td>
+                <td><textarea name="comment" id="configComment" class="text ui-widget-content ui-corner-all" rows="3"
+                              cols="25"></textarea></td>
             </tr>
         </table>
     </form>
@@ -193,10 +198,10 @@
                 type: 'POST',
                 success: function (result) {
                     if (result.ret) {
-                        $(result.data).each(function(i, str) {
-                            if(str.indexOf("success") != -1) {
+                        $(result.data).each(function (i, str) {
+                            if (str.indexOf("success") != -1) {
                                 showMessage("机器加载配置", str, true);
-                            }else {
+                            } else {
                                 showMessage("机器加载配置", str, false);
                             }
                         });
@@ -204,7 +209,7 @@
                         showMessage("所有机器加载配置", "服务器处理错误,请稍候重试", false);
                     }
                 },
-                error: function() {
+                error: function () {
                     showMessage("所有机器加载配置出错", "服务器处理错误,请稍候重试", false);
                 }
             })
@@ -226,7 +231,7 @@
                         }
                     }
                 },
-                error: function() {
+                error: function () {
                     showMessage("更新配置出错", "服务器处理错误,请稍候重试", false);
                 }
             });
@@ -245,7 +250,7 @@
                         var targetConfig = configMap[configK];
                         if (targetConfig) {
                             $("#configK").val(targetConfig.k);
-                            $("#configK").attr("readonly","readonly");
+                            $("#configK").attr("readonly", "readonly");
                             $("#configV").val(targetConfig.v);
                             $("#configComment").val(targetConfig.comment);
                         }

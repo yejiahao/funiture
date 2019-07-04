@@ -1,8 +1,5 @@
 package com.app.mvc.exception;
 
-/**
- * Created by jimin on 15/11/5.
- */
 public class ParaException extends RuntimeException {
 
     public ParaException() {

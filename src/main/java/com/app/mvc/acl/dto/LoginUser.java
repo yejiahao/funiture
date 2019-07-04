@@ -4,14 +4,11 @@ import com.app.mvc.acl.domain.SysUser;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Created by jimin on 16/2/10.
- */
 @Getter
 @Setter
 public class LoginUser {
 
-    private boolean ret = false;
+    private boolean ret;
 
     private SysUser user;
 

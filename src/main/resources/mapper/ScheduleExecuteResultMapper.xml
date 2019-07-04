@@ -7,13 +7,14 @@
 
     <sql id="scheduleExecuteResultColumns">
         id,
-        schedule_id as scheduleId,
+        schedule_id AS scheduleId,
         status,
-        start_time as startTime,
-        end_time as endTime
+        start_time AS startTime,
+        end_time AS endTime
     </sql>
 
-    <insert id="save" parameterType="com.app.mvc.schedule.ScheduleExecuteResult" keyColumn="id" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.app.mvc.schedule.ScheduleExecuteResult" keyColumn="id" useGeneratedKeys="true"
+            keyProperty="id">
         INSERT INTO schedule_execute_result
         (schedule_id, status, start_time, end_time)
         VALUES
@@ -43,7 +44,7 @@
         WHERE schedule_id = #{scheduleId}
     </select>
 
-    <select id="findLastExecute" parameterType="string" resultType="com.app.mvc.schedule.ScheduleExecuteResult" >
+    <select id="findLastExecute" parameterType="string" resultType="com.app.mvc.schedule.ScheduleExecuteResult">
         SELECT
         <include refid="scheduleExecuteResultColumns"/>
         FROM schedule_execute_result

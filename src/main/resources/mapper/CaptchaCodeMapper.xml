@@ -8,10 +8,10 @@
     <sql id="captchaCodeColumns">
         id,
         code,
-        session_id as sessionId,
-        try_times as tryTimes,
-        expire_time as expireTime,
-        create_time as createTime,
+        session_id AS sessionId,
+        try_times AS tryTimes,
+        expire_time AS expireTime,
+        create_time AS createTime,
         status
     </sql>
 

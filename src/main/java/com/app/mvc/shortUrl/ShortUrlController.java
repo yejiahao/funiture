@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by jimin on 16/4/7.
- */
 @Slf4j
 @Controller
 public class ShortUrlController {

@@ -12,13 +12,13 @@
         telephone,
         mail,
         remark,
-        dept_id as deptId,
+        dept_id AS deptId,
         status,
-        supplier_id as supplierId,
-        managed_supplier_ids as managedSupplierIds,
+        supplier_id AS supplierId,
+        managed_supplier_ids AS managedSupplierIds,
         operator,
-        operate_time as operateTime,
-        operate_ip as operateIp
+        operate_time AS operateTime,
+        operate_ip AS operateIp
     </sql>
 
     <sql id="sysUserColumns">
@@ -27,13 +27,13 @@
         telephone,
         mail,
         remark,
-        dept_id as deptId,
+        dept_id AS deptId,
         status,
-        supplier_id as supplierId,
-        managed_supplier_ids as managedSupplierIds,
+        supplier_id AS supplierId,
+        managed_supplier_ids AS managedSupplierIds,
         operator,
-        operate_time as operateTime,
-        operate_ip as operateIp
+        operate_time AS operateTime,
+        operate_ip AS operateIp
     </sql>
 
     <insert id="save" parameterType="SysUser" useGeneratedKeys="true" keyColumn="id">

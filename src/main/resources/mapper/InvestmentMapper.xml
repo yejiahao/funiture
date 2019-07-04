@@ -15,17 +15,17 @@
         sex,
         mail,
         qq,
-        business_brand as businessBrand,
-        business_model as businessModel,
-        venue_name as venueName,
-        business_size as businessSize,
-        contract_time as contractTime,
-        investment_amount as investmentAmount,
+        business_brand AS businessBrand,
+        business_model AS businessModel,
+        venue_name AS venueName,
+        business_size AS businessSize,
+        contract_time AS contractTime,
+        investment_amount AS investmentAmount,
         comment,
         status,
-        create_time as createTime,
+        create_time AS createTime,
         operator,
-        operate_time as operateTime
+        operate_time AS operateTime
     </sql>
 
     <insert id="save" parameterType="com.app.mvc.business.domain.Investment">
@@ -50,8 +50,10 @@
         FROM investment
     </select>
 
-    <select id="getPage" parameterType="com.app.mvc.beans.PageQuery" resultType="com.app.mvc.business.domain.Investment">
-        SELECT <include refid="investmentColumns" />
+    <select id="getPage" parameterType="com.app.mvc.beans.PageQuery"
+            resultType="com.app.mvc.business.domain.Investment">
+        SELECT
+        <include refid="investmentColumns"/>
         FROM investment
         ORDER BY id DESC
         limit #{pageSize} offset #{offset}

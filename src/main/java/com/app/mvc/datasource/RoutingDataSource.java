@@ -8,9 +8,8 @@ import java.lang.annotation.Target;
 
 /**
  * 可以动态切换至指定的数据源
- * Created by jimin on 16/03/22.
  */
-@Target({ ElementType.METHOD })
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface RoutingDataSource {

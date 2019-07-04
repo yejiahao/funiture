@@ -6,9 +6,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-/**
- * Created by jimin on 15/11/4.
- */
 @Slf4j
 public class JsonMapper {
 

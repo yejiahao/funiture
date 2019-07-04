@@ -14,9 +14,6 @@ import com.google.common.collect.ImmutableMap;
 
 import java.util.Map;
 
-/**
- * Created by jimin on 16/1/24.
- */
 public class LogTypeServiceConfig {
 
     private final static Map<Integer, SysService> logTypeServiceMap = ImmutableMap.<Integer, SysService>builder()

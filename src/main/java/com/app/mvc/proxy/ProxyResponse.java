@@ -1,8 +1,5 @@
 package com.app.mvc.proxy;
 
-/**
- * Created by jimin on 16/4/28.
- */
 public class ProxyResponse {
 
     private final static String DEFAULT_IP = "127.0.0.1"; // 直连时默认的ip

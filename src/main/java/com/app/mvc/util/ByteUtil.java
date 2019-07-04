@@ -1,8 +1,5 @@
 package com.app.mvc.util;
 
-/**
- * Created by jimin on 15/12/11.
- */
 public class ByteUtil {
 
     public static byte[] toByteArray(Long l) {

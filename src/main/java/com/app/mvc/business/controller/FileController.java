@@ -9,7 +9,6 @@ import com.app.mvc.business.service.FileInfoService;
 import com.app.mvc.config.GlobalConfig;
 import com.app.mvc.config.GlobalConfigKey;
 import com.app.mvc.exception.NotFoundException;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
@@ -25,7 +24,9 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @Slf4j
@@ -47,15 +48,15 @@ public class FileController {
 
         String operator = LoginUtil.getUserNameCookie();
         try {
-            List<FileUploadBo> uploadFileList = Lists.newArrayList();
+            List<FileUploadBo> uploadFileList = new ArrayList<>();
 
-            //创建一个通用的多部分解析器
+            // 创建一个通用的多部分解析器
             CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
 
-            //判断 request 是否有文件上传,即多部分请求
+            // 判断 request 是否有文件上传,即多部分请求
             if (multipartResolver.isMultipart(request)) {
 
-                //转换成多部分request
+                // 转换成多部分request
                 MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 
                 MultiValueMap<String, MultipartFile> multiValueMap = multiRequest.getMultiFileMap();
@@ -75,19 +76,19 @@ public class FileController {
     public void download(HttpServletRequest request, HttpServletResponse response, int id) throws Exception {
 
         FileInfo fileInfo = fileInfoService.findById(id);
-        if (fileInfo == null) {
+        if (Objects.isNull(fileInfo)) {
             throw new NotFoundException("未查到可下载的文件");
         }
 
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        BufferedInputStream bis = null;
-        BufferedOutputStream bos = null;
+        BufferedInputStream bis;
+        BufferedOutputStream bos;
 
         String downloadPath = GlobalConfig.getValue(GlobalConfigKey.FILE_UPLOAD_PATH) + fileInfo.getName();
 
         long fileLength = new File(downloadPath).length();
-        response.setHeader("Content-disposition", "attachment; filename=" + new String(fileInfo.getOriginName().getBytes("utf-8"), "ISO8859-1"));
+        response.setHeader("Content-disposition", "attachment; filename=" + new String(fileInfo.getOriginName().getBytes("UTF-8"), "ISO8859-1"));
         response.setHeader("Content-Length", String.valueOf(fileLength));
 
         bis = new BufferedInputStream(new FileInputStream(downloadPath));
@@ -101,4 +102,3 @@ public class FileController {
         bos.close();
     }
 }
-

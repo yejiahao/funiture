@@ -30,22 +30,22 @@ public class TestExcel {
         Workbook writeWorkbook = new SXSSFWorkbook();
         Sheet writeSheet = writeWorkbook.createSheet();
 
-        Workbook readWorkBook = new XSSFWorkbook(new FileInputStream(originFile)); // 将指定的excel读取到内存对象中
-        Sheet readSheet = readWorkBook.getSheetAt(0); // 读取excel第一个sheet
+        Workbook readWorkBook = new XSSFWorkbook(new FileInputStream(originFile));// 将指定的excel读取到内存对象中
+        Sheet readSheet = readWorkBook.getSheetAt(0);// 读取excel第一个sheet
 
         log.info("excel rows : {}", readSheet.getLastRowNum());
-        for (int index = 0; index < readSheet.getLastRowNum(); index++) { // 遍历excel的每行
+        for (int index = 0; index < readSheet.getLastRowNum(); index++) {// 遍历excel的每行
             try {
-                Row readRow = readSheet.getRow(index); // 根据行号取出excel的每一行
+                Row readRow = readSheet.getRow(index);// 根据行号取出excel的每一行
                 if (readRow == null) {
                     break;
                 }
                 Iterator<Cell> cellIterator = readRow.cellIterator();
-                Row writeRow = writeSheet.createRow(index); // 在新的excel文件中添加一行
+                Row writeRow = writeSheet.createRow(index);// 在新的excel文件中添加一行
                 int temp = 0;
-                while (cellIterator.hasNext()) {      // 迭代遍历excel每行的每一列
-                    Cell curCell = cellIterator.next(); //
-                    if (temp == 0 && curCell == null) { // 处理可能存在的脏数据,这里假设第一列为行号
+                while (cellIterator.hasNext()) {// 迭代遍历excel每行的每一列
+                    Cell curCell = cellIterator.next();
+                    if (temp == 0 && curCell == null) {// 处理可能存在的脏数据,这里假设第一列为行号
                         break;
                     }
 
@@ -53,14 +53,14 @@ public class TestExcel {
                     Cell writeRowCell = writeRow.createCell(temp);
                     writeRowCell.setCellType(curCell.getCellType());
                     switch (curCell.getCellType()) {
-                    case Cell.CELL_TYPE_NUMERIC:
-                        writeRowCell.setCellValue(curCell.getNumericCellValue());
-                        break;
-                    case Cell.CELL_TYPE_BOOLEAN:
-                        writeRowCell.setCellValue(curCell.getBooleanCellValue());
-                        break;
-                    default:
-                        writeRowCell.setCellValue(curCell.getStringCellValue());
+                        case Cell.CELL_TYPE_NUMERIC:
+                            writeRowCell.setCellValue(curCell.getNumericCellValue());
+                            break;
+                        case Cell.CELL_TYPE_BOOLEAN:
+                            writeRowCell.setCellValue(curCell.getBooleanCellValue());
+                            break;
+                        default:
+                            writeRowCell.setCellValue(curCell.getStringCellValue());
                     }
                     temp++;
                 }

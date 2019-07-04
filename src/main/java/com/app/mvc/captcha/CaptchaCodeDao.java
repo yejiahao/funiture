@@ -5,9 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 
-/**
- * Created by jimin on 16/3/9.
- */
 @DBRepository
 public interface CaptchaCodeDao {
 

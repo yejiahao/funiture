@@ -4,9 +4,6 @@ import com.app.mvc.acl.domain.SysBase;
 import com.app.mvc.acl.domain.SysDept;
 import com.app.mvc.acl.vo.DeptPara;
 
-/**
- * Created by jimin on 16/1/16.
- */
 public class DeptConvert {
 
     public static SysDept of(DeptPara para) {

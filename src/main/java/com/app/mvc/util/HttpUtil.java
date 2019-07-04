@@ -1,15 +1,9 @@
 package com.app.mvc.util;
 
 import com.app.mvc.common.ThreadPool;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.Consts;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpException;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.StatusLine;
+import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -45,6 +39,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -52,9 +47,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by jimin on 16/5/5.
- */
 @Slf4j
 public class HttpUtil {
 
@@ -102,7 +94,7 @@ public class HttpUtil {
     public static PoolingHttpClientConnectionManager getPoolingClientConnectionManager() {
         try {
             SSLContext sslContext = SSLContexts.custom().useTLS().build();
-            sslContext.init(null, new TrustManager[] { new X509TrustManager() {
+            sslContext.init(null, new TrustManager[]{new X509TrustManager() {
 
                 public X509Certificate[] getAcceptedIssuers() {
                     return null;
@@ -113,7 +105,7 @@ public class HttpUtil {
 
                 public void checkServerTrusted(X509Certificate[] certs, String authType) {
                 }
-            } }, null);
+            }}, null);
             Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
                     .register("http", PlainConnectionSocketFactory.INSTANCE).register("https", new SSLConnectionSocketFactory(sslContext)).build();
 
@@ -247,7 +239,7 @@ public class HttpUtil {
     }
 
     public static List<NameValuePair> buildPostParams(Map<String, String> reqParams) {
-        List<NameValuePair> params = Lists.newArrayList();
+        List<NameValuePair> params = new ArrayList<>();
         for (Entry<String, String> param : reqParams.entrySet()) {
             params.add(new BasicNameValuePair(param.getKey(), param.getValue()));
         }
@@ -338,7 +330,7 @@ public class HttpUtil {
                     return null;
                 }
             };
-            ctx.init(null, new TrustManager[] { tm }, null);
+            ctx.init(null, new TrustManager[]{tm}, null);
             SSLSocketFactory ssf = new SSLSocketFactory(ctx, SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
             return new Scheme("https", 443, ssf);
         } catch (NoSuchAlgorithmException e) {

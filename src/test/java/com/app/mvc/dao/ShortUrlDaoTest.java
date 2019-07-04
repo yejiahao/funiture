@@ -6,9 +6,6 @@ import org.junit.Test;
 
 import javax.annotation.Resource;
 
-/**
- * Created by jimin on 16/4/7.
- */
 public class ShortUrlDaoTest extends BaseJunitTest {
 
     @Resource

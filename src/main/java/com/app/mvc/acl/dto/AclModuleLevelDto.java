@@ -8,9 +8,6 @@ import org.springframework.beans.BeanUtils;
 
 import java.util.List;
 
-/**
- * Created by jimin on 16/1/24.
- */
 @ToString
 @Getter
 @Setter

@@ -2,16 +2,10 @@ package com.app.mvc.acl.controller;
 
 import com.app.mvc.acl.domain.SysUser;
 import com.app.mvc.acl.enums.Status;
-import com.app.mvc.acl.service.SysRoleAclService;
-import com.app.mvc.acl.service.SysRoleService;
-import com.app.mvc.acl.service.SysRoleUserService;
-import com.app.mvc.acl.service.SysTreeService;
-import com.app.mvc.acl.service.SysUserService;
+import com.app.mvc.acl.service.*;
 import com.app.mvc.acl.vo.RolePara;
 import com.app.mvc.beans.JsonData;
 import com.app.mvc.util.StringUtil;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by jimin on 16/1/23.
- */
 @Slf4j
 @Controller
 @RequestMapping("/sys/role")
@@ -107,15 +100,15 @@ public class SysRoleController {
         List<SysUser> selectedUsers = sysRoleUserService.getListByRoleId(roleId);
         List<SysUser> allUsers = sysUserService.getUserList();
 
-        List<SysUser> unselectedUsers = Lists.newArrayList();
+        List<SysUser> unselectedUsers = new ArrayList<>();
         for (SysUser sysUser : allUsers) {
             if (sysUser.getStatus() == Status.AVAILABLE.getCode() && !selectedUsers.contains(sysUser)) {
                 unselectedUsers.add(sysUser);
             }
         }
-        Map<String, List<SysUser>> map = Maps.newHashMap();
-        map.put("selected", selectedUsers); // 已选择中可能有无效的用户
-        map.put("unselected", unselectedUsers); // 未选择中都是有效的用户
+        Map<String, List<SysUser>> map = new HashMap<>();
+        map.put("selected", selectedUsers);// 已选择中可能有无效的用户
+        map.put("unselected", unselectedUsers);// 未选择中都是有效的用户
         return JsonData.success(map);
     }
 

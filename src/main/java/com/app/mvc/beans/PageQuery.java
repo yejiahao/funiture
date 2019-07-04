@@ -7,10 +7,6 @@ import lombok.ToString;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-/**
- * Created by jimin on 15/11/4.
- */
-
 @ToString
 public class PageQuery {
 

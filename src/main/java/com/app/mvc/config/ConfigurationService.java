@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * Created by jimin on 15/11/7.
- */
 @Service
 public class ConfigurationService {
 

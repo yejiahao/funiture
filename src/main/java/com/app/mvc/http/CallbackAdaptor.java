@@ -3,10 +3,6 @@ package com.app.mvc.http;
 import com.app.mvc.http.ext.AuthSSLInitializationError;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * 简化HttpCallback接口的实现复杂度
- * Created by jimin on 16/03/10.
- */
 @Slf4j
 public class CallbackAdaptor implements HttpCallback {
 

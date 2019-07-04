@@ -8,9 +8,6 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by jimin on 16/2/2.
- */
 @Service
 public class SysToolService {
 

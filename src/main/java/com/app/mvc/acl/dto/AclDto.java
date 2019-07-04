@@ -6,9 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.beans.BeanUtils;
 
-/**
- * Created by jimin on 16/1/24.
- */
 @ToString
 @Getter
 @Setter

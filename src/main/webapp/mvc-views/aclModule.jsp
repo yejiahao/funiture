@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>权限管理</title>
@@ -42,7 +42,8 @@
                         <div class="col-xs-6">
                             <div class="dataTables_length" id="dynamic-table_length"><label>
                                 展示
-                                <select id="pageSize" name="dynamic-table_length" aria-controls="dynamic-table" class="form-control input-sm">
+                                <select id="pageSize" name="dynamic-table_length" aria-controls="dynamic-table"
+                                        class="form-control input-sm">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
@@ -53,10 +54,12 @@
                         <div class="col-xs-6">
                             <div id="dynamic-table_filter" class="dataTables_filter"><label>
                                 搜索:
-                                <input type="search" class="form-control input-sm" placeholder="" aria-controls="dynamic-table"></label></div>
+                                <input type="search" class="form-control input-sm" placeholder=""
+                                       aria-controls="dynamic-table"></label></div>
                         </div>
                     </div>
-                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer"
+                           role="grid"
                            aria-describedby="dynamic-table_info" style="font-size:14px">
                         <thead>
                         <tr role="row">
@@ -102,11 +105,13 @@
             </tr>
             <tr>
                 <td><label for="aclModuleName">名称</label></td>
-                <td><input type="text" name="name" id="aclModuleName" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="name" id="aclModuleName" value=""
+                           class="text ui-widget-content ui-corner-all"></td>
             </tr>
             <tr>
                 <td><label for="aclModuleSeq">顺序</label></td>
-                <td><input type="text" name="seq" id="aclModuleSeq" value="1" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="seq" id="aclModuleSeq" value="1"
+                           class="text ui-widget-content ui-corner-all"></td>
             </tr>
             <tr>
                 <td><label for="aclModuleStatus">状态</label></td>
@@ -120,7 +125,8 @@
             </tr>
             <tr>
                 <td><label for="aclModuleRemark">备注</label></td>
-                <td><textarea name="remark" id="aclModuleRemark" class="text ui-widget-content ui-corner-all" rows="3" cols="25"></textarea></td>
+                <td><textarea name="remark" id="aclModuleRemark" class="text ui-widget-content ui-corner-all" rows="3"
+                              cols="25"></textarea></td>
             </tr>
         </table>
     </form>
@@ -131,13 +137,15 @@
             <tr>
                 <td style="width: 80px;"><label for="parentId">所属权限模块</label></td>
                 <td>
-                    <select id="aclModuleSelectId" name="aclModuleId" data-placeholder="选择权限模块" style="width: 200px;"></select>
+                    <select id="aclModuleSelectId" name="aclModuleId" data-placeholder="选择权限模块"
+                            style="width: 200px;"></select>
                 </td>
             </tr>
             <tr>
                 <td><label for="aclName">名称</label></td>
                 <input type="hidden" name="id" id="aclId"/>
-                <td><input type="text" name="name" id="aclName" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="name" id="aclName" value="" class="text ui-widget-content ui-corner-all">
+                </td>
             </tr>
             <tr>
                 <td><label for="aclType">类型</label></td>
@@ -151,7 +159,8 @@
             </tr>
             <tr>
                 <td><label for="aclUrl">URL</label></td>
-                <td><input type="text" name="url" id="aclUrl" value="1" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="url" id="aclUrl" value="1" class="text ui-widget-content ui-corner-all">
+                </td>
             </tr>
             <tr>
                 <td><label for="aclStatus">状态</label></td>
@@ -165,11 +174,13 @@
             </tr>
             <tr>
                 <td><label for="aclSeq">顺序</label></td>
-                <td><input type="text" name="seq" id="aclSeq" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="seq" id="aclSeq" value="" class="text ui-widget-content ui-corner-all">
+                </td>
             </tr>
             <tr>
                 <td><label for="aclRemark">备注</label></td>
-                <td><textarea name="remark" id="aclRemark" class="text ui-widget-content ui-corner-all" rows="3" cols="25"></textarea></td>
+                <td><textarea name="remark" id="aclRemark" class="text ui-widget-content ui-corner-all" rows="3"
+                              cols="25"></textarea></td>
             </tr>
         </table>
     </form>
@@ -225,7 +236,7 @@
 
 <script type="text/javascript">
 
-    $(function(){
+    $(function () {
         var aclModuleList; // 存储树形权限模块列表
         var aclModuleMap = {}; // 存储map格式权限模块列表
         var aclMap = {}; // 存储map格式的权限点列表
@@ -303,12 +314,12 @@
                         aclModuleList = result.data;
                         var rendered = Mustache.render(aclModuleListTemplate, {
                             aclModuleList: result.data,
-                            "showDownAngle": function() {
+                            "showDownAngle": function () {
                                 return function (text, render) {
                                     return (this.aclModuleList && this.aclModuleList.length > 0) ? "" : "hidden";
                                 }
                             },
-                            "displayClass": function() {
+                            "displayClass": function () {
                                 return "";
                             }
                         });
@@ -330,12 +341,12 @@
                     if (aclModule.aclModuleList && aclModule.aclModuleList.length > 0) {
                         var rendered = Mustache.render(aclModuleListTemplate, {
                             aclModuleList: aclModule.aclModuleList,
-                            "showDownAngle": function() {
+                            "showDownAngle": function () {
                                 return function (text, render) {
                                     return (this.aclModuleList && this.aclModuleList.length > 0) ? "" : "hidden";
                                 }
                             },
-                            "displayClass": function() {
+                            "displayClass": function () {
                                 return "hidden";
                             },
                         });
@@ -345,6 +356,7 @@
                 });
             }
         }
+
         // 递归渲染权限模块下拉列表字符串, 前提是加载过权限模块列表, 根据权限模块列表数据计算
         function recursiveRenderAclModuleSelect(aclModuleList, level) {
             level = level | 0;
@@ -358,7 +370,10 @@
                         }
                         blank += "∟";
                     }
-                    optionStr += Mustache.render("<option value='{{id}}'>{{name}}</option>", {id: aclModule.id, name: blank + aclModule.name});
+                    optionStr += Mustache.render("<option value='{{id}}'>{{name}}</option>", {
+                        id: aclModule.id,
+                        name: blank + aclModule.name
+                    });
                     if (aclModule.aclModuleList && aclModule.aclModuleList.length > 0) {
                         recursiveRenderAclModuleSelect(aclModule.aclModuleList, level + 1);
                     }
@@ -376,13 +391,13 @@
                     handleAclModuleSelected(aclModuleId);
                 }
             });
-            $(".sub-aclModule").click(function(e) {
+            $(".sub-aclModule").click(function (e) {
                 e.preventDefault();
                 e.stopPropagation(); // 取消冒泡,因为是个递归结构,冒泡的话会让一个点击被响应多个
                 // .parent().parent().parent().children().children(".aclModule-name") 这个取决于使用插件的层级
                 // 主要就是为了找出当前模块的[首层][子模块]节点
                 $(this).parent().parent().parent().children().children(".aclModule-name").toggleClass("hidden");
-                if($(this).is(".fa-angle-double-down")) { // 如果包含向下箭头
+                if ($(this).is(".fa-angle-double-down")) { // 如果包含向下箭头
                     $(this).removeClass("fa-angle-double-down").addClass("fa-angle-double-up");
                 } else {
                     $(this).removeClass("fa-angle-double-up").addClass("fa-angle-double-down");
@@ -451,6 +466,7 @@
                 }
             });
         }
+
         // 选中一个权限模块, 加载样式, 并加载对应权限点的列表并渲染
         function handleAclModuleSelected(aclModuleId) {
             if (lastAclModuleId != -1) {
@@ -493,7 +509,7 @@
                         "showStatus": function () {
                             return this.status == 1 ? "有效" : (this.status == 0 ? "无效" : "删除");
                         },
-                        "showType": function() {
+                        "showType": function () {
                             return this.type == 0 ? "菜单" : (this.type == 1 ? "按钮" : "其他");
                         },
                         "bold": function () { // 对展示做特殊处理
@@ -598,6 +614,7 @@
                 }
             });
         }
+
         function updateAcl(isCreate, successCallback, failCallback) {
             $.ajax({
                 url: isCreate ? "/sys/acl/save.json" : "/sys/acl/update.json",

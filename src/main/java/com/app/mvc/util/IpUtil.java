@@ -13,9 +13,6 @@ import java.net.UnknownHostException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by jimin on 15/11/5.
- */
 @Slf4j
 public class IpUtil {
 
@@ -36,10 +33,10 @@ public class IpUtil {
             ip = request.getRemoteAddr();
         }
 
-        //过滤反向代理的ip
+        // 过滤反向代理的ip
         String[] stemps = ip.split(",");
         if (stemps != null && stemps.length >= 1) {
-            //得到第一个IP，即客户端真实IP
+            // 得到第一个IP，即客户端真实IP
             ip = stemps[0];
         }
 
@@ -153,31 +150,31 @@ public class IpUtil {
         final String LOOPBACK_ADDRESS = "127.0.0.1";
 
         try {
-            //如果为127.0.0.1,则获取本地MAC地址。
+            // 如果为127.0.0.1,则获取本地MAC地址。
             if (LOOPBACK_ADDRESS.equals(ip)) {
                 InetAddress inetAddress = InetAddress.getLocalHost();
-                //貌似此方法需要JDK1.6。
+                // 貌似此方法需要JDK1.6。
                 NetworkInterface networkInterface = NetworkInterface.getByInetAddress(inetAddress);
                 byte[] mac = networkInterface.getHardwareAddress();
                 if (networkInterface == null || mac == null) {
                     return "127.0.0.1";
                 }
 
-                //下面代码是把mac地址拼装成String
+                // 下面代码是把mac地址拼装成String
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < mac.length; i++) {
                     if (i != 0) {
                         sb.append("-");
                     }
-                    //mac[i] & 0xFF 是为了把byte转化为正整数
+                    // mac[i] & 0xFF 是为了把byte转化为正整数
                     String s = Integer.toHexString(mac[i] & 0xFF);
                     sb.append(s.length() == 1 ? 0 + s : s);
                 }
-                //把字符串所有小写字母改为大写成为正规的mac地址并返回
+                // 把字符串所有小写字母改为大写成为正规的mac地址并返回
                 macAddress = sb.toString().trim().toUpperCase();
                 return macAddress;
             }
-            //获取非本地IP的MAC地址
+            // 获取非本地IP的MAC地址
             Process p = Runtime.getRuntime().exec("nbtstat -A " + ip);
             InputStreamReader isr = new InputStreamReader(p.getInputStream());
             BufferedReader br = new BufferedReader(isr);

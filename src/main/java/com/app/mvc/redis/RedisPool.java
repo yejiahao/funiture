@@ -6,10 +6,8 @@ import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
-/**
- * Created by jimin on 16/6/24.
- */
 @Service("redisPool")
 @Slf4j
 public class RedisPool {
@@ -17,7 +15,7 @@ public class RedisPool {
     /**
      * if use redis, should check these files:
      * (close injecting code, for no need to start redis-server every time)
-     *
+     * <p>
      * applicationContext.xml
      * RedisPool.java
      * SysCacheService.java
@@ -31,7 +29,7 @@ public class RedisPool {
 
     public void safeClose(ShardedJedis shardedJedis) {
         try {
-            if (shardedJedis != null) {
+            if (Objects.nonNull(shardedJedis)) {
                 shardedJedis.close();
             }
         } catch (Exception e) {

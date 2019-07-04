@@ -4,16 +4,10 @@ import java.util.LinkedList;
 
 /**
  * 保存一个线程中的动态数据源的key
- * Created by jimin on 16/03/22.
  */
 public class DataSourceKeyHolder {
 
-    private static final ThreadLocal<LinkedList<String>> holder = new ThreadLocal<LinkedList<String>>() {
-        @Override
-        protected LinkedList<String> initialValue() {
-            return new LinkedList<>();
-        }
-    };
+    private static final ThreadLocal<LinkedList<String>> holder = ThreadLocal.withInitial(() -> new LinkedList<>());
 
     public static void set(String key) {
         holder.get().push(key);
@@ -24,8 +18,9 @@ public class DataSourceKeyHolder {
     }
 
     public static String getCurrentKey() {
-        if (holder.get().size() == 0)
+        if (holder.get().size() == 0) {
             return null;
+        }
         return holder.get().getFirst();
     }
 

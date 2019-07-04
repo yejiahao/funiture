@@ -5,9 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * Created by jimin on 16/5/8.
- */
 @DBRepository
 public interface ScheduleJobSettingDao {
 

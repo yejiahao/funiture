@@ -2,22 +2,12 @@ package com.app.mvc.util;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-
-/**
- * Created by jimin on 16/1/16.
- */
+import java.util.*;
 
 public class BeanValidator {
     private static ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
@@ -31,7 +21,7 @@ public class BeanValidator {
         if (validateResult.isEmpty()) {
             return Collections.emptyMap();
         } else {
-            LinkedHashMap errors = Maps.newLinkedHashMap();
+            LinkedHashMap errors = new LinkedHashMap();
             Iterator i$ = validateResult.iterator();
 
             while (i$.hasNext()) {
@@ -44,7 +34,7 @@ public class BeanValidator {
     }
 
     public static Map<String, String> validateForObjects(Object first, Object... others) {
-        return others != null && others.length != 0 ? validateForList(Lists.asList(first, others)) : validate(first, new Class[0]);
+        return Objects.nonNull(others) && others.length != 0 ? validateForList(Lists.asList(first, others)) : validate(first, new Class[0]);
     }
 
     public static Map<String, String> validateForList(Collection<?> collection) {

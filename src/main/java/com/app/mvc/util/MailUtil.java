@@ -8,15 +8,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
-/**
- * Created by jimin on 15/11/21.
- */
-
 @Slf4j
 public class MailUtil {
 
     public static boolean send(Mail mail) {
-
         String from = GlobalConfig.getStringValue(GlobalConfigKey.MAIL_SEND_FROM, "");
         int port = GlobalConfig.getIntValue(GlobalConfigKey.MAIL_SEND_PORT, 25);
         String host = GlobalConfig.getStringValue(GlobalConfigKey.MAIL_SEND_SMTP, "");
@@ -45,4 +40,3 @@ public class MailUtil {
     }
 
 }
-
