@@ -1,6 +1,6 @@
 # Funiture
 
-## 个人在线课程推荐
+## 慕课网课程推荐
 * [Java并发编程与高并发解决方案](http://coding.imooc.com/class/195.html)：http://coding.imooc.com/class/195.html 
 * [Java开发企业级权限管理系统](http://coding.imooc.com/class/149.html)：http://coding.imooc.com/class/149.html 
 
