@@ -7,9 +7,6 @@
 ## 微信公众号
 TechDevPro
 
-## 个人知识星球
-【玩转大厂Java与高并发】，可关注微信公众号后获取
-
 ## 更多组件代码演练
 https://github.com/kanwangzjm/practice
 
