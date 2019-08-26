@@ -22,7 +22,7 @@
     <title>登录</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">

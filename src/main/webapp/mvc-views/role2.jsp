@@ -3,9 +3,9 @@
 <head>
     <title>角色管理</title>
     <jsp:include page="../common/backend_common.jsp"/>
-    <link rel="stylesheet" href="/ztree/zTreeStyle.css" type="text/css">
+    <link rel="stylesheet" href="/node_modules/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/bootstrap-duallistbox.min.css" type="text/css">
-    <script type="text/javascript" src="/ztree/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="/node_modules/ztree/js/jquery.ztree.all.min.js"></script>
     <script type="text/javascript" src="/assets/js/jquery.bootstrap-duallistbox.min.js"></script>
     <style type="text/css">
         .bootstrap-duallistbox-container .moveall, .bootstrap-duallistbox-container .removeall {
