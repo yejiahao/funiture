@@ -1,14 +1,14 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : vm2
+ Source Server         : vmx
  Source Server Type    : MySQL
- Source Server Version : 80016
- Source Host           : vm2.yejh.cn:3306
+ Source Server Version : 80018
+ Source Host           : vmx.yejh.cn:3306
  Source Schema         : log
 
  Target Server Type    : MySQL
- Target Server Version : 80016
+ Target Server Version : 80018
  File Encoding         : 65001
 
  Date: 04/07/2019 11:48:30
